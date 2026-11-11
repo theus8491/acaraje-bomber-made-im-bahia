@@ -94,7 +94,7 @@ button:hover{background:#c4b5fd}
 .credits-card{background:rgba(255,255,255,.76);border-color:#c4b5fd;color:#312e81}
 .sk{background:linear-gradient(135deg,#fef3c7,#fde68a 55%,#ffedd5);border-color:#f59e0b}
 .sk:nth-child(2){background:linear-gradient(135deg,#cffafe,#a5f3fc 55%,#d1fae5)}
-#h0,#h1{background:linear-gradient(100deg,#ede9fe,#cffafe);border:1px solid rgba(124,58,237,.22);color:#312e81}
+#h0,#h1,#h2,#h3,#h4{background:linear-gradient(100deg,#ede9fe,#cffafe);border:1px solid rgba(124,58,237,.22);color:#312e81}
 .help{background:linear-gradient(100deg,#fef3c7,#ffedd5);border:1px solid #fbbf24;color:#713f12}
 #rd,#rt{flex-wrap:wrap}
 .map-choice{display:flex;flex-wrap:wrap;gap:6px}
@@ -232,6 +232,8 @@ input{background:#eff6ff;color:#172554;border-color:#facc15}
 .super-choice{display:flex;flex:1 1 150px;min-width:140px;flex-direction:column;gap:4px;color:#312e81;font-weight:800;text-align:left}
 .super-choice select{width:100%;padding:7px 9px;border:2px solid #8b5cf6;border-radius:7px;background:#fff;color:#312e81;font:inherit;font-weight:800}
 .super-help{text-align:center;color:#334155!important}
+.super-quick{display:flex;gap:3px;margin-top:3px}.super-quick button{padding:3px 6px;border:1px solid #8b5cf6;border-radius:6px;background:#ede9fe;color:#312e81;line-height:1}.super-quick button.on{background:#7c3aed;color:#fff}
+#h2{display:none}
 @media(max-width:420px){.super-selectors{flex-direction:column}.super-choice{min-width:0}}
 
 /* Tela ampla e controles virtuais; aparecem apenas em dispositivos/telas compactas. */
@@ -350,45 +352,24 @@ input{background:#eff6ff;color:#172554;border-color:#facc15}
   #mobileControls{max-width:360px}
 }
 
-/* d-pad deslizável: arraste o dedo para trocar a direção. */
-.touch-dpad{touch-action:none}
 /* mobileControls v5: visibilidade garantida também em WebViews que ignoram media queries de ponteiro. */
 #mobileControls[aria-hidden="false"]{display:flex!important;position:relative;z-index:1100}
 #mobileControls[aria-hidden="true"]{display:none!important}
+.wiki-panel{max-height:360px;overflow:auto}.wiki-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;text-align:left}.wiki-grid article{padding:7px;border:1px solid #c4b5fd;border-radius:7px;background:#f8fafc;color:#172554;display:flex;flex-direction:column;gap:2px}.wiki-grid b{font-size:.72rem}.wiki-grid span{font-size:.62rem;line-height:1.25;color:#475569}.victory-card{animation:victoryPop .55s ease both}.victory-burst{animation:victoryPulse 1s ease-in-out infinite}@keyframes victoryPop{from{transform:scale(.7) rotate(-5deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}@keyframes victoryPulse{50%{transform:scale(1.18) rotate(8deg)}}#victoryOverlay{display:none;position:fixed;inset:0;z-index:20;align-items:center;justify-content:center;background:rgba(15,23,42,.72);padding:20px}#victoryOverlay.show{display:flex}.victory-card{width:min(92vw,390px);padding:22px;border:4px solid #facc15;border-radius:18px;text-align:center;background:linear-gradient(145deg,#312e81,#be123c);color:#fff;box-shadow:0 0 0 5px #fff,0 12px 40px rgba(0,0,0,.4)}.victory-burst{font-size:3.2rem}.victory-kicker{font-weight:1000;letter-spacing:.18em;color:#fde68a}.victory-card h2{margin:7px 0;font-size:1.8rem}.victory-card p{margin:0 0 16px;color:#fef3c7}.victory-actions{display:flex;gap:8px;justify-content:center}.victory-actions button{padding:9px 13px;border:2px solid #fff;border-radius:8px;background:#facc15;color:#312e81;font-weight:1000}.victory-actions button+button{background:#fff;color:#312e81}@media(max-width:420px){.wiki-grid{grid-template-columns:1fr}.wiki-panel{max-height:330px}}
 
-/* Fim de rodada: campeão, troféu e ações claras para PC e mobile. */
-#roundActions{display:none;position:fixed;z-index:1500;left:50%;top:50%;transform:translate(-50%,-50%);width:min(90vw,360px);box-sizing:border-box;flex-direction:column;align-items:center;gap:9px;padding:18px 16px 15px;border:3px solid #facc15;border-radius:16px;background:linear-gradient(145deg,rgba(15,23,42,.97),rgba(30,64,175,.97));color:#fff;text-align:center;box-shadow:0 0 0 3px rgba(255,255,255,.35) inset,0 14px 40px rgba(15,23,42,.45);font-weight:900}
-#roundActions.visible{display:flex;animation:championIn .42s cubic-bezier(.2,.9,.25,1) both}
-#roundActions .champion-trophy{font-size:3.5rem;line-height:1;filter:drop-shadow(0 4px 0 #92400e);animation:trophyBounce 1.15s ease-in-out infinite}
-#roundActions .champion-kicker{font-size:.72rem;letter-spacing:.16em;color:#fde68a}
-#roundActions .champion-name{font-size:1.28rem;color:#fff;text-shadow:2px 2px #172554}
-#roundActions .champion-sub{font-size:.72rem;color:#dbeafe;font-weight:700}
-#roundActions .round-buttons{display:flex;gap:8px;width:100%;justify-content:center;margin-top:3px}
-#roundActions button{min-width:130px;padding:9px 11px;border-color:#fff7ed;font-size:.78rem}
-#nextRound{background:linear-gradient(180deg,#fb7185,#e11d48);color:#fff;text-shadow:1px 1px #881337}
-#roundMenu{background:#fef08a;color:#172554}
-@keyframes championIn{from{opacity:0;transform:translate(-50%,-42%) scale(.82)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
-@keyframes trophyBounce{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-8px) rotate(4deg)}}
-@media(prefers-reduced-motion:reduce){#roundActions.visible,.champion-trophy{animation:none!important}}
-@media(max-width:420px){#roundActions{padding:15px 12px 12px}.round-buttons{flex-direction:column}.round-buttons button{width:100%}}
-#botSettings{display:none;flex-wrap:wrap;gap:8px;align-items:center}#hud{flex-wrap:wrap}.pl{min-width:0}
-#superShortcut{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px;padding:6px 8px;border:1px solid #c4b5fd;border-radius:9px;background:linear-gradient(100deg,#ede9fe,#e0f2fe);color:#312e81;font-weight:800}#superShortcut button{padding:5px 8px;border:1px solid #7c3aed;border-radius:7px;background:#7c3aed;color:#fff;font-weight:800}
-#botSkinConfig{display:none;padding:8px;border:1px solid #fbbf24;border-radius:9px;background:#fffbeb;color:#713f12}.bot-skin-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:6px}.bot-skin-grid label{display:flex;flex-direction:column;gap:3px;font-weight:800}.bot-skin-grid select{padding:6px;border:1px solid #f59e0b;border-radius:6px;background:#fff}
-#ffaNotice{display:none;padding:5px 8px;border:1px solid #f87171;border-radius:8px;background:#fff1f2;color:#9f1239;font-weight:800;text-align:center}
-
-.wiki-intro{text-align:center;color:#475569}.wiki-heading{font-weight:1000;color:#7c2d12;border-bottom:2px solid #fbbf24;padding:7px 2px 4px;margin-top:4px}.wiki-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.wiki-card{display:flex;gap:8px;align-items:flex-start;padding:8px;border:1px solid rgba(99,102,241,.22);border-radius:10px;background:linear-gradient(135deg,#fff7ed,#eff6ff);color:#312e81}.wiki-card b{font-size:.82rem}.wiki-card p{margin:3px 0 0;font-size:.68rem;line-height:1.22;color:#475569}.wiki-sprite{display:grid;place-items:center;flex:0 0 42px;height:42px;border-radius:9px;background:linear-gradient(145deg,#312e81,#7c3aed);font-size:1.65rem;box-shadow:inset 0 -3px 0 rgba(15,23,42,.25)}
-@media(max-width:560px){.wiki-grid{grid-template-columns:1fr}.wiki-card p{font-size:.72rem}}
-
-
-/* Placar responsivo para você + até quatro bots. */
-#hud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;width:100%;max-width:540px;align-items:stretch}
-#hud .pl{flex:none;min-width:0;width:auto;overflow:hidden}
-#hud #gameTimer{grid-column:1/-1;justify-self:center}
-@media(max-width:560px){#hud{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}#hud .score-head{gap:3px}.score-name{font-size:.7rem}.score-tag{font-size:.54rem;padding:2px 3px}.score-wins{padding:3px 5px}.score-wins small{font-size:.44rem}.score-wins strong{font-size:.86rem}.score-stats{gap:3px}.score-stat{padding:2px 4px;font-size:.56rem}}
-@media(max-width:350px){#hud{gap:4px}.score-name{font-size:.62rem}.score-stat{padding:2px 3px}.score-stat strong{font-size:.64rem}}
-
-#mobileControls[data-active="true"]{display:flex!important;visibility:visible!important}
-
+/* Layout v2: cards de skins e supers sem sobreposição, inclusive com cinco bots. */
+#menu .panel[data-panel="skins"] .skin-row{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;align-items:stretch;max-height:none}
+#menu .panel[data-panel="skins"] .sk{min-height:142px;padding:7px 6px;gap:4px}
+#menu .panel[data-panel="skins"] .sk>div{gap:3px}
+#menu .panel[data-panel="skins"] .sk span{display:block;width:100%;min-height:2.35em;font-size:.68rem;line-height:1.15;overflow-wrap:anywhere}
+#menu .panel[data-panel="skins"] .sk button{min-width:30px;padding:5px 7px}
+.super-selectors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-items:stretch}
+.super-choice{min-width:0!important;flex:none;padding:7px;border:1px solid #c4b5fd;border-radius:8px;background:rgba(248,250,252,.92);box-sizing:border-box}
+.super-choice select{min-width:0;font-size:.72rem;line-height:1.2;white-space:normal}
+.super-quick{display:flex;flex-wrap:wrap;gap:3px;min-height:24px}
+.super-quick button{min-width:25px;padding:4px 5px}
+@media(max-width:760px){#menu .panel[data-panel="skins"] .skin-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){#menu .panel[data-panel="skins"] .skin-row{grid-template-columns:1fr}.super-selectors{grid-template-columns:1fr}.super-choice{padding:6px}.super-quick{justify-content:center}}
 </style>
 </head>
 <body>
@@ -401,14 +382,15 @@ input{background:#eff6ff;color:#172554;border-color:#facc15}
 <header class="menu-head"><div class="logo-top">SALVADOR APRESENTA</div><h2 class="game-logo"><span>ACARAJÉ</span><strong>BOMBER</strong></h2><div class="intro">PELOURINHO · BAHIA</div></header>
 <canvas id="hero0" class="menu-hero hero-left" width="48" height="72" aria-hidden="true"></canvas><canvas id="hero1" class="menu-hero hero-right" width="48" height="72" aria-hidden="true"></canvas>
 <nav class="tabs" aria-label="Menu principal">
-<button class="tab on" data-tab="play">Jogar</button><button class="tab" data-tab="skins">Skins</button><button class="tab" data-tab="supers">⚡ Supers</button><button class="tab" data-tab="settings">Configurações</button><button class="tab" data-tab="wiki">📖 Wiki</button><button class="tab" data-tab="credits">Créditos</button><button class="tab" data-tab="music">Músicas</button>
+<button class="tab on" data-tab="play">Jogar</button><button class="tab" data-tab="skins">Skins</button><button class="tab" data-tab="wiki">Wiki</button><button class="tab" data-tab="settings">Configurações</button><button class="tab" data-tab="credits">Créditos</button><button class="tab" data-tab="music">Músicas</button>
 </nav>
 <section class="panel active" data-panel="play">
 <div class="section-title">Escolha seu modo de jogo</div>
-<div class="row"><button data-m="local">2 jogadores</button><button data-m="bot">⚔️ Todos contra todos</button><button data-m="online">Online</button></div><div id="ffaNotice" class="small">⚔️ Modo livre: você e todos os bots lutam entre si. O último sobrevivente vence.</div><div class="row" id="botSettings"><label><b>Bots:</b> <select id="botCount"><option value="1">1 bot</option><option value="2">2 bots</option><option value="3">3 bots</option><option value="4">4 bots</option></select></label><label><b>Dificuldade:</b> <select id="botDifficulty"><option value="0">Fácil</option><option value="1" selected>Normal</option><option value="2">Difícil</option></select></label></div>
+<div class="row"><button data-m="local">2 jogadores</button><button data-m="bot">1 Bot</button><button data-m="bot2">2 Bots</button><button data-m="bot4">4 Bots</button><button data-m="online">Online</button></div>
+<div class="row platform-row"><b>Versão:</b><button data-platform="pc">PC · teclado</button><button data-platform="mobile">Celular · touch</button></div>
 <div class="row" id="ro"><b>Sala:</b><input id="code" maxlength="16" value="bahia"><span id="st" class="small"></span></div>
 <div class="row play-action"><button id="play" class="on">▶ Jogar</button></div>
-<div id="superShortcut" class="small"><strong>⚡ Supers:</strong> Macumba · Maré · Acarajé Gigante · Capoeira · Cangaço · Saci da Bahia <button type="button" data-tab="supers">Escolher supers</button></div><div class="small" id="ctl"></div>
+<div class="small" id="ctl"></div>
 </section>
 <section class="panel" data-panel="skins">
 <div class="section-title">Personalize os personagens</div>
@@ -416,53 +398,28 @@ input{background:#eff6ff;color:#172554;border-color:#facc15}
 <div class="row skin-row">
 <div class="sk"><canvas id="pv0" width="48" height="72"></canvas><div><div id="sl0"></div><button data-s="0,-1" aria-label="Skin anterior do jogador 1">◀</button> <span id="sn0"></span> <button data-s="0,1" aria-label="Próxima skin do jogador 1">▶</button></div></div>
 <div class="sk" id="sk1"><canvas id="pv1" width="48" height="72"></canvas><div><div id="sl1"></div><button data-s="1,-1" aria-label="Skin anterior do jogador 2">◀</button> <span id="sn1"></span> <button data-s="1,1" aria-label="Próxima skin do jogador 2">▶</button></div></div>
+<div class="sk" id="sk2"><canvas id="pv2" width="48" height="72"></canvas><div><div id="sl2">Bot 2</div><button data-s="2,-1" aria-label="Skin anterior do bot 2">◀</button> <span id="sn2"></span> <button data-s="2,1" aria-label="Próxima skin do bot 2">▶</button></div></div><div class="sk" id="sk3"><canvas id="pv3" width="48" height="72"></canvas><div><div id="sl3">Bot 2</div><button data-s="3,-1" aria-label="Skin anterior do bot 3">◀</button> <span id="sn3"></span> <button data-s="3,1" aria-label="Próxima skin do bot 3">▶</button></div></div><div class="sk" id="sk4"><canvas id="pv4" width="48" height="72"></canvas><div><div id="sl4">Bot 2</div><button data-s="4,-1" aria-label="Skin anterior do bot 4">◀</button> <span id="sn4"></span> <button data-s="4,1" aria-label="Próxima skin do bot 4">▶</button></div></div>
 </div>
-</section>
-<section class="panel" data-panel="supers"><div id="botSkinConfig" class="small"><b>Skins dos bots</b><div class="bot-skin-grid"><label>Bot 1<select id="botSkin1"><option value="0">Baiana</option><option value="1">Baiana de Oxum</option><option value="2">Capoeirista</option><option value="3">Jangadeiro</option><option value="4">Filho de Gandhy</option><option value="5">PETO – Bahia</option><option value="6">RODESP – Bahia</option><option value="7">Choque – Bahia</option><option value="8">Empolgado</option><option value="9">Menino do Veio</option><option value="10">Coroa</option><option value="11">Menino Bom</option><option value="12">Ninja</option></select></label><label>Bot 2<select id="botSkin2"><option value="0">Baiana</option><option value="1">Baiana de Oxum</option><option value="2">Capoeirista</option><option value="3">Jangadeiro</option><option value="4">Filho de Gandhy</option><option value="5">PETO – Bahia</option><option value="6">RODESP – Bahia</option><option value="7">Choque – Bahia</option><option value="8">Empolgado</option><option value="9">Menino do Veio</option><option value="10">Coroa</option><option value="11">Menino Bom</option><option value="12">Ninja</option></select></label><label>Bot 3<select id="botSkin3"><option value="0">Baiana</option><option value="1">Baiana de Oxum</option><option value="2">Capoeirista</option><option value="3">Jangadeiro</option><option value="4">Filho de Gandhy</option><option value="5">PETO – Bahia</option><option value="6">RODESP – Bahia</option><option value="7">Choque – Bahia</option><option value="8">Empolgado</option><option value="9">Menino do Veio</option><option value="10">Coroa</option><option value="11">Menino Bom</option><option value="12">Ninja</option></select></label><label>Bot 4<select id="botSkin4"><option value="0">Baiana</option><option value="1">Baiana de Oxum</option><option value="2">Capoeirista</option><option value="3">Jangadeiro</option><option value="4">Filho de Gandhy</option><option value="5">PETO – Bahia</option><option value="6">RODESP – Bahia</option><option value="7">Choque – Bahia</option><option value="8">Empolgado</option><option value="9">Menino do Veio</option><option value="10">Coroa</option><option value="11">Menino Bom</option><option value="12">Ninja</option></select></label></div></div><div id="superConfig" class="super-config">
+<div id="superConfig" class="super-config">
 <div class="section-title">Super de cada jogador</div>
 <div class="super-selectors">
-<label class="super-choice"><span id="super0Label">Jogador 1</span><select id="super0" data-super-choice="0"><option value="heat">🔥 Calor — fogo até 6 casas</option><option value="ice">❄️ Gelo — lentidão e congelamento</option><option value="thief">🧤 Ladrão — rouba 2 melhorias</option><option value="fly">🪽 Voador — voo e 5 bombas</option><option value="ninja">🥷 Ninja — shurikens e 5 acertos</option><option value="macumba">🥁 Macumba — tambores e fantasmas</option><option value="mare">🌊 Maré de Iemanjá — onda empurradora</option><option value="acarajeGigante">🥟 Acarajé Gigante — projétil explosivo</option><option value="capoeira">🌀 Capoeira — golpe e atordoamento</option><option value="cangaco">🤠 Cangaço — velocidade e bombas extras</option><option value="macumba">🥁 Macumba — tambores e fantasmas</option><option value="saci">🌀 Saci da Bahia — teleporte e bomba falsa</option></select></label>
-<label class="super-choice" id="superPick1"><span id="super1Label">Jogador 2</span><select id="super1" data-super-choice="1"><option value="heat">🔥 Calor — fogo até 6 casas</option><option value="ice">❄️ Gelo — lentidão e congelamento</option><option value="thief">🧤 Ladrão — rouba 2 melhorias</option><option value="fly">🪽 Voador — voo e 5 bombas</option><option value="ninja">🥷 Ninja — shurikens e 5 acertos</option><option value="macumba">🥁 Macumba — tambores e fantasmas</option><option value="mare">🌊 Maré de Iemanjá — onda empurradora</option><option value="acarajeGigante">🥟 Acarajé Gigante — projétil explosivo</option><option value="capoeira">🌀 Capoeira — golpe e atordoamento</option><option value="cangaco">🤠 Cangaço — velocidade e bombas extras</option><option value="macumba">🥁 Macumba — tambores e fantasmas</option><option value="saci">🌀 Saci da Bahia — teleporte e bomba falsa</option></select></label><label class="super-choice" id="superPick2"><span id="super2Label">Bot 2</span><select id="super2" data-super-choice="2"><option value="heat">🔥 Calor — fogo até 6 casas</option><option value="ice">❄️ Gelo — lentidão e congelamento</option><option value="thief">🧤 Ladrão — rouba 2 melhorias</option><option value="fly">🪽 Voador — voo e 5 bombas</option><option value="ninja">🥷 Ninja — shurikens e 5 acertos</option><option value="macumba">🥁 Macumba — tambores e fantasmas</option><option value="mare">🌊 Maré de Iemanjá — onda empurradora</option><option value="acarajeGigante">🥟 Acarajé Gigante — projétil explosivo</option><option value="capoeira">🌀 Capoeira — golpe e atordoamento</option><option value="cangaco">🤠 Cangaço — velocidade e bombas extras</option><option value="macumba">🥁 Macumba — tambores e fantasmas</option><option value="saci">🌀 Saci da Bahia — teleporte e bomba falsa</option></select></label><label class="super-choice" id="superPick3"><span id="super3Label">Bot 3</span><select id="super3" data-super-choice="3"><option value="heat">🔥 Calor — fogo até 6 casas</option><option value="ice">❄️ Gelo — lentidão e congelamento</option><option value="thief">🧤 Ladrão — rouba 2 melhorias</option><option value="fly">🪽 Voador — voo e 5 bombas</option><option value="ninja">🥷 Ninja — shurikens e 5 acertos</option><option value="macumba">🥁 Macumba — tambores e fantasmas</option><option value="mare">🌊 Maré de Iemanjá — onda empurradora</option><option value="acarajeGigante">🥟 Acarajé Gigante — projétil explosivo</option><option value="capoeira">🌀 Capoeira — golpe e atordoamento</option><option value="cangaco">🤠 Cangaço — velocidade e bombas extras</option><option value="macumba">🥁 Macumba — tambores e fantasmas</option><option value="saci">🌀 Saci da Bahia — teleporte e bomba falsa</option></select></label><label class="super-choice" id="superPick4"><span id="super4Label">Bot 4</span><select id="super4" data-super-choice="4"><option value="heat">🔥 Calor — fogo até 6 casas</option><option value="ice">❄️ Gelo — lentidão e congelamento</option><option value="thief">🧤 Ladrão — rouba 2 melhorias</option><option value="fly">🪽 Voador — voo e 5 bombas</option><option value="ninja">🥷 Ninja — shurikens e 5 acertos</option><option value="macumba">🥁 Macumba — tambores e fantasmas</option><option value="mare">🌊 Maré de Iemanjá — onda empurradora</option><option value="acarajeGigante">🥟 Acarajé Gigante — projétil explosivo</option><option value="capoeira">🌀 Capoeira — golpe e atordoamento</option><option value="cangaco">🤠 Cangaço — velocidade e bombas extras</option><option value="macumba">🥁 Macumba — tambores e fantasmas</option><option value="saci">🌀 Saci da Bahia — teleporte e bomba falsa</option></select></label>
+<label class="super-choice"><span id="super0Label">Jogador 1</span><select id="super0" data-super-choice="0"><option value="heat">🔥 Calor — fogo até 6 casas</option><option value="ice">❄️ Gelo — lentidão e congelamento</option><option value="thief">🧤 Ladrão — rouba 2 melhorias</option><option value="fly">🪽 Voador — voo e 5 bombas</option><option value="ninja">🥷 Ninja — shurikens e 5 acertos</option><option value="tide">🌊 Maré de Iemanjá — onda e empurrão</option><option value="giant">🥟 Acarajé Gigante — ataque em linha</option><option value="capoeira">🌀 Capoeira — golpe e atordoamento</option><option value="cangaco">🤠 Cangaço — velocidade e bombas extras</option><option value="saci">🌀 Saci da Bahia — teleporte e bomba falsa</option><option value="trio">📣 Trio Elétrico — onda sonora</option><option value="cloud">☁️ Nuvem Voadora — 10 s e 5 bombas</option></select><div class="super-quick" data-super-player="0"><button data-super="heat">🔥</button><button data-super="ice">❄️</button><button data-super="thief">🧤</button><button data-super="fly">🪽</button><button data-super="ninja">🥷</button><button data-super="tide">🌊</button><button data-super="giant">🥟</button><button data-super="capoeira">🌀</button><button data-super="cangaco">🤠</button><button data-super="saci">🌀</button><button data-super="trio">📣</button><button data-super="cloud">☁️</button></div></label>
+<label class="super-choice" id="superPick1"><span id="super1Label">Jogador 2</span><select id="super1" data-super-choice="1"><option value="heat">🔥 Calor — fogo até 6 casas</option><option value="ice">❄️ Gelo — lentidão e congelamento</option><option value="thief">🧤 Ladrão — rouba 2 melhorias</option><option value="fly">🪽 Voador — voo e 5 bombas</option><option value="ninja">🥷 Ninja — shurikens e 5 acertos</option><option value="tide">🌊 Maré de Iemanjá — onda e empurrão</option><option value="giant">🥟 Acarajé Gigante — ataque em linha</option><option value="capoeira">🌀 Capoeira — golpe e atordoamento</option><option value="cangaco">🤠 Cangaço — velocidade e bombas extras</option><option value="saci">🌀 Saci da Bahia — teleporte e bomba falsa</option><option value="trio">📣 Trio Elétrico — onda sonora</option><option value="cloud">☁️ Nuvem Voadora — 10 s e 5 bombas</option></select><div class="super-quick" data-super-player="1"><button data-super="heat">🔥</button><button data-super="ice">❄️</button><button data-super="thief">🧤</button><button data-super="fly">🪽</button><button data-super="ninja">🥷</button><button data-super="tide">🌊</button><button data-super="giant">🥟</button><button data-super="capoeira">🌀</button><button data-super="cangaco">🤠</button><button data-super="saci">🌀</button><button data-super="trio">📣</button><button data-super="cloud">☁️</button></div></label>
+<label class="super-choice" id="superPick2"><span id="super2Label">Bot 2 · J3</span><select id="super2" data-super-choice="2"><option value="heat">🔥 Calor — fogo até 6 casas</option><option value="ice">❄️ Gelo — lentidão e congelamento</option><option value="thief">🧤 Ladrão — rouba 2 melhorias</option><option value="fly">🪽 Voador — voo e 5 bombas</option><option value="ninja">🥷 Ninja — shurikens e 5 acertos</option><option value="tide">🌊 Maré de Iemanjá — onda e empurrão</option><option value="giant">🥟 Acarajé Gigante — ataque em linha</option><option value="capoeira">🌀 Capoeira — golpe e atordoamento</option><option value="cangaco">🤠 Cangaço — velocidade e bombas extras</option><option value="saci">🌀 Saci da Bahia — teleporte e bomba falsa</option><option value="trio">📣 Trio Elétrico — onda sonora</option><option value="cloud">☁️ Nuvem Voadora — 10 s e 5 bombas</option></select><div class="super-quick" data-super-player="2"><button data-super="heat">🔥</button><button data-super="ice">❄️</button><button data-super="thief">🧤</button><button data-super="fly">🪽</button><button data-super="ninja">🥷</button><button data-super="tide">🌊</button><button data-super="giant">🥟</button><button data-super="capoeira">🌀</button><button data-super="cangaco">🤠</button><button data-super="saci">🌀</button><button data-super="trio">📣</button><button data-super="cloud">☁️</button></div></label><label class="super-choice" id="superPick3"><span id="super3Label">Bot 3 · J4</span><select id="super3" data-super-choice="3"><option value="heat">🔥 Calor — fogo até 6 casas</option><option value="ice">❄️ Gelo — lentidão e congelamento</option><option value="thief">🧤 Ladrão — rouba 2 melhorias</option><option value="fly">🪽 Voador — voo e 5 bombas</option><option value="ninja">🥷 Ninja — shurikens e 5 acertos</option><option value="tide">🌊 Maré de Iemanjá — onda e empurrão</option><option value="giant">🥟 Acarajé Gigante — ataque em linha</option><option value="capoeira">🌀 Capoeira — golpe e atordoamento</option><option value="cangaco">🤠 Cangaço — velocidade e bombas extras</option><option value="saci">🌀 Saci da Bahia — teleporte e bomba falsa</option><option value="trio">📣 Trio Elétrico — onda sonora</option><option value="cloud">☁️ Nuvem Voadora — 10 s e 5 bombas</option></select><div class="super-quick" data-super-player="3"><button data-super="heat">🔥</button><button data-super="ice">❄️</button><button data-super="thief">🧤</button><button data-super="fly">🪽</button><button data-super="ninja">🥷</button><button data-super="tide">🌊</button><button data-super="giant">🥟</button><button data-super="capoeira">🌀</button><button data-super="cangaco">🤠</button><button data-super="saci">🌀</button><button data-super="trio">📣</button><button data-super="cloud">☁️</button></div></label><label class="super-choice" id="superPick4"><span id="super4Label">Bot 4 · J5</span><select id="super4" data-super-choice="4"><option value="heat">🔥 Calor — fogo até 6 casas</option><option value="ice">❄️ Gelo — lentidão e congelamento</option><option value="thief">🧤 Ladrão — rouba 2 melhorias</option><option value="fly">🪽 Voador — voo e 5 bombas</option><option value="ninja">🥷 Ninja — shurikens e 5 acertos</option><option value="tide">🌊 Maré de Iemanjá — onda e empurrão</option><option value="giant">🥟 Acarajé Gigante — ataque em linha</option><option value="capoeira">🌀 Capoeira — golpe e atordoamento</option><option value="cangaco">🤠 Cangaço — velocidade e bombas extras</option><option value="saci">🌀 Saci da Bahia — teleporte e bomba falsa</option><option value="trio">📣 Trio Elétrico — onda sonora</option><option value="cloud">☁️ Nuvem Voadora — 10 s e 5 bombas</option></select><div class="super-quick" data-super-player="4"><button data-super="heat">🔥</button><button data-super="ice">❄️</button><button data-super="thief">🧤</button><button data-super="fly">🪽</button><button data-super="ninja">🥷</button><button data-super="tide">🌊</button><button data-super="giant">🥟</button><button data-super="capoeira">🌀</button><button data-super="cangaco">🤠</button><button data-super="saci">🌀</button><button data-super="trio">📣</button><button data-super="cloud">☁️</button></div></label>
 </div>
-<div class="small super-help">Até 5 cargas escondidas em caixas por rodada; cada uso consome 1. Calor: fogo em linha (6 casas) · Gelo: lento e congela após 2 s · Ladrão: rouba 2 níveis de atributos · Voador: atravessa obstáculos e lança até 5 bombas · Ninja: shurikens e quinto acerto derruba · Macumba: fantasmas invertem controles e só morrem com bombas · Maré: onda empurra e apaga chamas · Acarajé Gigante: projétil explosivo · Capoeira: golpe atordoa · Cangaço: velocidade e bombas extras. E (P1) / Num1 (P2).</div>
+<div class="small super-help">Até 5 cargas escondidas em caixas por rodada; cada uso consome 1. Calor: fogo em linha (6 casas) · Gelo: lento e congela após 2 s · Ladrão: rouba 2 níveis de atributos · Voador: atravessa obstáculos e lança até 5 bombas · Ninja: shurikens, lentidão e quinto acerto derruba · Maré: empurra e apaga chamas · Acarajé Gigante: linha destrutiva · Capoeira: atordoa e bloqueia bombas · Cangaço: velocidade e +2 bombas por 6 s · Trio Elétrico: onda sonora que empurra, atordoa e quebra a primeira caixa · Nuvem Voadora: voo por 10 s e 5 bombas. E (P1) / Num1 (P2).</div>
+</div>
 </section>
+<section class="panel wiki-panel" data-panel="wiki"><div class="section-title">Wiki dos Supers</div><div class="wiki-grid"><article><b>🔥 Calor</b><span>Fogo em linha até 6 casas. Três marcas derrubam.</span></article><article><b>❄️ Gelo</b><span>Cria gelo no caminho e congela após 2 segundos.</span></article><article><b>🧤 Ladrão</b><span>Rouba dois níveis de pimenta, bombas ou alcance.</span></article><article><b>🪽 Voador</b><span>Atravessa obstáculos e lança até 5 bombas.</span></article><article><b>🥷 Ninja</b><span>Lança shurikens; cinco acertos derrubam.</span></article><article><b>🌊 Maré de Iemanjá</b><span>Onda em linha que empurra rivais e apaga chamas.</span></article><article><b>🥟 Acarajé Gigante</b><span>Ataque em linha que destrói caixa, empurra e atordoa.</span></article><article><b>🌀 Capoeira</b><span>Golpe circular: empurra, atordoa e bloqueia bombas.</span></article><article><b>🤠 Cangaço</b><span>Seis segundos de velocidade e duas bombas extras.</span></article><article><b>🌀 Saci da Bahia</b><span>Teleporta para uma casa livre e deixa uma bomba falsa.</span></article><article><b>📣 Trio Elétrico</b><span>Onda sonora em linha: empurra, atordoa e quebra a primeira caixa do corredor.</span></article><article><b>☁️ Nuvem Voadora</b><span>Voa pelo mapa por 10 segundos e pode soltar até 5 bombas durante o voo.</span></article></div><div class="small">Cada uso consome uma carga de Super. Colete cargas escondidas nas caixas.</div></section>
 <section class="panel" data-panel="settings">
 <div class="section-title">Configurações da partida</div>
-<div class="row"><b>Mapa:</b><div class="map-choice"><button data-map="pelourinho">Pelourinho</button><button data-map="favela">Morro + Carro de Som</button><button data-map="feira">Feira de São Joaquim</button></div></div>
+<div class="row"><b>Mapa:</b><div class="map-choice"><button data-map="pelourinho">Pelourinho</button><button data-map="favela">Morro + Carro de Som</button><button data-map="feira">Feira de São Joaquim</button><button data-map="prison">Presídio Obscuro · 4 túneis</button></div></div>
 <div class="row"><b>Trilha:</b><button data-music="toggle">Música: ligada</button><span class="small">Faixa original do mapa Morro + Carro de Som</span></div>
 
 <div class="row" id="rd"><b>Dificuldade:</b><button data-d="0">Fácil</button><button data-d="1">Médio</button><button data-d="2">Difícil</button></div>
 <div class="row" id="rt"><b>Vitórias p/ ganhar:</b><button data-t="1">1</button><button data-t="2">2</button><button data-t="3">3</button><button data-t="5">5</button></div>
 <div class="small">Controles: P1 usa WASD + Espaço. P2 usa setas + Enter. P pausa a partida.</div>
 <div class="row"><div class="small">Dica: colete pimentas para ganhar velocidade e dendê para ampliar as chamas. Procure as motos 🏍️ escondidas nos caixotes!</div></div>
-</section>
-
-<section class="panel" data-panel="wiki">
-<div class="section-title">📖 Wiki do Acarajé Bomber Bahia</div>
-<div class="small wiki-intro">Consulte os sprites, efeitos e regras de cada habilidade antes da rodada.</div>
-<div class="wiki-heading">Habilidades básicas</div>
-<div class="wiki-grid">
- <article class="wiki-card"><div class="wiki-sprite">🥟</div><div><b>Bomba de acarajé</b><p>Coloque com Espaço/Enter. Explode em quatro direções e pode destruir caixas.</p></div></article>
- <article class="wiki-card"><div class="wiki-sprite">🔥</div><div><b>Chama</b><p>O alcance aumenta com o item Dendê. Fogo normal derruba ao tocar.</p></div></article>
- <article class="wiki-card"><div class="wiki-sprite">🌶️</div><div><b>Pimenta</b><p>Aumenta a velocidade do jogador.</p></div></article>
- <article class="wiki-card"><div class="wiki-sprite">🛢️</div><div><b>Dendê</b><p>Aumenta o alcance das chamas das bombas.</p></div></article>
- <article class="wiki-card"><div class="wiki-sprite">🚓</div><div><b>Montarias</b><p>Viatura avança em linha reta; moto lança bombas; cavalo acelera; skate dá supervelocidade.</p></div></article>
- <article class="wiki-card"><div class="wiki-sprite">⚡</div><div><b>Cargas de super</b><p>Começa com uma carga e encontra mais cargas escondidas nas caixas.</p></div></article>
-</div>
-<div class="wiki-heading">Supers</div>
-<div class="wiki-grid">
- <article class="wiki-card"><div class="wiki-sprite">🔥</div><div><b>Calor</b><p>Cria uma linha de fogo de até 6 casas. Três marcas derrubam o alvo.</p></div></article>
- <article class="wiki-card"><div class="wiki-sprite">❄️</div><div><b>Gelo</b><p>Deixa gelo no chão, reduz a velocidade e congela após permanência.</p></div></article>
- <article class="wiki-card"><div class="wiki-sprite">🧤</div><div><b>Ladrão</b><p>Rouba duas melhorias de atributos do rival.</p></div></article>
- <article class="wiki-card"><div class="wiki-sprite">🪽</div><div><b>Voador</b><p>Atravessa obstáculos por pouco tempo e lança até cinco bombas.</p></div></article>
- <article class="wiki-card"><div class="wiki-sprite">🥷</div><div><b>Ninja</b><p>Lança shurikens; acertos acumulados desaceleram e o quinto derruba.</p></div></article>
- <article class="wiki-card"><div class="wiki-sprite">🥁</div><div><b>Macumba</b><p>Invoca dois tambores e dois fantasmas. Eles capturam e invertem os controles; fantasmas só morrem com bombas.</p></div></article>
- <article class="wiki-card"><div class="wiki-sprite">🌊</div><div><b>Maré de Iemanjá</b><p>Uma onda empurra jogadores, afasta fantasmas e apaga chamas comuns.</p></div></article>
- <article class="wiki-card"><div class="wiki-sprite">🥟</div><div><b>Acarajé Gigante</b><p>Projétil que destrói caixas, atordoa o rival e explode ao bater.</p></div></article>
- <article class="wiki-card"><div class="wiki-sprite">🌀</div><div><b>Capoeira</b><p>Golpe circular que empurra e impede o rival de colocar bombas por alguns segundos.</p></div></article>
- <article class="wiki-card"><div class="wiki-sprite">🤠</div><div><b>Cangaço</b><p>Aumenta a velocidade, dá duas bombas extras e resiste a empurrões.</p></div></article>
- <article class="wiki-card"><div class="wiki-sprite">🌀</div><div><b>Saci da Bahia</b><p>Teleporta para uma casa distante, deixa uma bomba falsa e fica brevemente invulnerável.</p></div></article>
-</div>
 </section>
 <section class="panel" data-panel="credits">
 <div class="section-title">Créditos</div>
@@ -478,14 +435,7 @@ input{background:#eff6ff;color:#172554;border-color:#facc15}
 </div>
 </div>
 <div class="row" id="game-actions"><button id="bp">⏸ Pausar (P)</button><button id="stopAudio">⏹ Parar áudio</button><button id="bm">Menu (M)</button></div>
-
-<div id="roundActions" role="dialog" aria-live="assertive" aria-label="Resultado da rodada">
- <div class="champion-trophy" aria-hidden="true">🏆</div>
- <div class="champion-kicker" id="championKicker">CAMPEÃO DA RODADA</div>
- <div class="champion-name" id="championName">Jogador 1</div>
- <div class="champion-sub" id="championSub">Preparado para a próxima?</div>
- <div class="round-buttons"><button type="button" id="nextRound">▶ Próxima rodada</button><button type="button" id="roundMenu">⌂ Menu</button></div>
-</div>
+<div id="victoryOverlay" aria-hidden="true"><div class="victory-card"><div class="victory-burst">🏆</div><div class="victory-kicker">VITÓRIA!</div><h2 id="victoryTitle">Baiana venceu!</h2><p id="victorySkin"></p><div class="victory-actions"><button id="victoryReplay">▶ Jogar de novo</button><button id="victoryMenu">⌂ Menu</button></div></div></div>
 <div id="mobileControls" aria-label="Controles virtuais da partida">
  <div class="touch-system" aria-label="Ações da partida">
   <button type="button" class="touch-key" data-touch-action="pause">⏸ Pausar</button>
@@ -519,22 +469,26 @@ input{background:#eff6ff;color:#172554;border-color:#facc15}
   </div>
  </section>
 </div>
-<div class="help" id="game-help">🥟 Acarajé = bomba · 🌶️ Pimenta = turbo · 🛢️ Dendê = chama maior · 🚓 Viatura (Espaço/Enter) = avanço em linha reta · 🏍️ Moto = 3 bombas à distância</div>
+<div class="help" id="game-help">🥟 Acarajé = bomba · 🌶️ Pimenta = turbo · 🛢️ Dendê = chama maior</div>
 <script>
 const T=36,W=15,H=13,R=12;
+const PRISON_PORTALS=[{x:2,y:2,pair:2,color:"#22d3ee"},{x:12,y:2,pair:3,color:"#a855f7"},{x:2,y:11,pair:0,color:"#22d3ee"},{x:12,y:11,pair:1,color:"#a855f7"}];
 const MOTO_QTD=3; // motos garantidas escondidas em caixotes por rodada
 const $=id=>document.getElementById(id);
 const cv=$('c'),ctx=cv.getContext('2d'),bgm=$('bgm');
 bgm.volume=.55;
 let musicEnabled=true;
+const SUPER_OPTIONS=['heat','ice','thief','fly','ninja','tide','giant','capoeira','cangaco','saci','trio','cloud'];
 const dpr=Math.min(window.devicePixelRatio||1,2);
 cv.width=W*T*dpr;cv.height=H*T*dpr;ctx.scale(dpr,dpr);
-let grid,motoCrates=new Set(),bombs=[],flames=[],items=[],shurikens=[],macumbaDrums=[],macumbaGhosts=[],waves=[],giantAcarajes=[],capoeiraFx=[],saciDecoys=[],heatAttackSeq=0,hiddenTeleport=null,hiddenSuperCharges=[],iceTiles=[],over=false,overT=0,winner=null,matchOver=-1,time=0,scr='menu',paused=false,seed=1,scores=[0,0,0,0,0];
+let grid,motoCrates=new Set(),bombs=[],flames=[],items=[],shurikens=[],heatAttackSeq=0,hiddenTeleport=null,hiddenSuperCharges=[],iceTiles=[],shockwaves=[],over=false,overT=0,winner=null,matchOver=-1,time=0,scr='menu',paused=false,seed=1,scores=[0,0,0,0,0];
 let matchElapsed=0,lastTimerSecond=-1,shownScores=[-1,-1,-1,-1,-1],hudSignature='';
-let room=null,myIdx=0,hadOpp=false,acc=0,autoNext=false,activeTab='play';
-const cfg={mode:'local',diff:1,target:2,botCount:1,skin:[0,2,3,4,1],map:'pelourinho',supers:['macumba','mare','acarajeGigante','capoeira','cangaco']};
+let victoryShown=false;
+let room=null,myIdx=0,hadOpp=false,acc=0,autoNext=false,activeTab='play',playerCount=2;
+const platformParam=new URLSearchParams(location.search).get('platform');
+const cfg={mode:'local',diff:1,target:2,skin:[0,2,12,5,8],map:'pelourinho',supers:['heat','ice','ninja','saci','capoeira'],platform:platformParam==='mobile'||platformParam==='pc'?platformParam:'auto'};
 const MAX_SUPER_CHARGES=5;
-const SUPER_ABILITIES=[{id:'heat',name:'Super Calor',icon:'🔥'},{id:'ice',name:'Super Gelo',icon:'❄️'},{id:'thief',name:'Super Ladrão',icon:'🧤'},{id:'fly',name:'Super Voador',icon:'🪽'},{id:'ninja',name:'Super Ninja',icon:'🥷'},{id:'macumba',name:'Super Macumba',icon:'🥁'},{id:'mare',name:'Super Maré de Iemanjá',icon:'🌊'},{id:'acarajeGigante',name:'Super Acarajé Gigante',icon:'🥟'},{id:'capoeira',name:'Super Capoeira',icon:'🌀'},{id:'cangaco',name:'Super Cangaço',icon:'🤠'},{id:'saci',name:'Super Saci da Bahia',icon:'🌀'}];
+const SUPER_ABILITIES=[{id:'heat',name:'Super Calor',icon:'🔥'},{id:'ice',name:'Super Gelo',icon:'❄️'},{id:'thief',name:'Super Ladrão',icon:'🧤'},{id:'fly',name:'Super Voador',icon:'🪽'},{id:'ninja',name:'Super Ninja',icon:'🥷'},{id:'tide',name:'Maré de Iemanjá',icon:'🌊'},{id:'giant',name:'Acarajé Gigante',icon:'🥟'},{id:'capoeira',name:'Capoeira',icon:'🌀'},{id:'cangaco',name:'Cangaço',icon:'🤠'},{id:'saci',name:'Saci da Bahia',icon:'🌀'},{id:'trio',name:'Super Trio Elétrico',icon:'📣'},{id:'cloud',name:'Super Nuvem Voadora',icon:'☁️'}];
 const superInfo=id=>SUPER_ABILITIES.find(x=>x.id===id)||SUPER_ABILITIES[0];
 const keys={};
 const K1={u:['KeyW'],d:['KeyS'],l:['KeyA'],r:['KeyD'],b:['Space']};
@@ -542,7 +496,7 @@ const K2={u:['ArrowUp'],d:['ArrowDown'],l:['ArrowLeft'],r:['ArrowRight'],b:['Ent
 const DIRVEC={up:[0,-1],down:[0,1],left:[-1,0],right:[1,0]};
 const KB={u:['B_u'],d:['B_d'],l:['B_l'],r:['B_r'],b:['B_b']};
 const KO={};for(const d in K1)KO[d]=[...K1[d],...K2[d]];
-const players=Array.from({length:5},()=>({}));
+const players=[{},{},{},{},{}];
 const gameTimer=document.createElement('div');gameTimer.id='gameTimer';gameTimer.className='game-timer';gameTimer.setAttribute('role','timer');gameTimer.setAttribute('aria-label','Tempo decorrido da partida');gameTimer.setAttribute('aria-live','off');gameTimer.innerHTML='<span>⏱ TEMPO</span><strong>00:00</strong>';
 $('hud').insertBefore(gameTimer,$('h1'));
 const SKINS=[
@@ -558,7 +512,9 @@ const SKINS=[
 {n:'Menino do Veio',T:'#49351f',B:'#49351f',s:'#8d5524',W:'#6b5235',C:'#d9c7a1',D:'#594326',F:'#171717',cap:'#594326',mask:'#594326'},
 {n:'Coroa',T:'#5b267a',B:'#262626',s:'#a0693a',W:'#762f94',C:'#f0b429',D:'#402050',F:'#171717',mask:'#262626'},
 {n:'Menino Bom',T:'#356b45',B:'#294f37',s:'#8d5524',W:'#4b8058',C:'#e4bd43',D:'#263b2c',F:'#171717',cap:'#356b45',mask:'#263b2c'},
-{n:'Ninja',T:'#151827',B:'#171b2a',s:'#8d5524',W:'#252b3c',C:'#dc2626',D:'#991b1b',F:'#090b12',cap:'#101421',mask:'#111827',ninja:1}
+{n:'Ninja',T:'#151827',B:'#171b2a',s:'#8d5524',W:'#252b3c',C:'#dc2626',D:'#991b1b',F:'#090b12',cap:'#101421',mask:'#111827',ninja:1},
+{n:'Goku Baiano',T:'#171717',B:'#f97316',s:'#8d5524',W:'#2563eb',C:'#facc15',D:'#1d4ed8',F:'#172554',goku:1},
+{n:'Bills / Beerus',T:'#7c3aed',B:'#1e3a8a',s:'#8b5cf6',W:'#2563eb',C:'#facc15',D:'#f59e0b',F:'#1e3a8a',beerus:1}
 ];
 let ac;
 function unlockAudio(){try{const AudioCtor=window.AudioContext||window.webkitAudioContext;if(!AudioCtor)return;ac=ac||new AudioCtor();if(ac.state==='suspended')ac.resume().catch(()=>{});}catch(e){}}
@@ -567,27 +523,38 @@ function boom(){try{unlockAudio();const n=ac.currentTime,o=ac.createOscillator()
 function mk(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 const hash=(x,y)=>mk(seed*131+x*17+y*31)();
 const tileOf=v=>Math.floor(v/T);
-const nm=p=>p.bot?`Bot ${players.indexOf(p)} — ${SKINS[p.skin||0].n}`:SKINS[p.skin||0].n;
+const nm=p=>p.bot?'Bot '+(players.indexOf(p)) :SKINS[p.skin].n;
 function formatMatchTime(seconds){const total=Math.max(0,Math.floor(seconds));return `${String(Math.floor(total/60)).padStart(2,'0')}:${String(total%60).padStart(2,'0')}`}
 function resetMatchClock(){matchElapsed=0;lastTimerSecond=-1;shownScores=[-1,-1,-1,-1,-1];$('gameTimer').querySelector('strong').textContent='00:00'}
 
 function reset(sd){
- seed=sd||Math.floor(Math.random()*1e9);
+ seed=sd||Math.floor(Math.random()*1e9);victoryShown=false;hideVictory();
  const r=mk(seed);
- grid=[];bombs=[];flames=[];items=[];shurikens=[];macumbaDrums=[];macumbaGhosts=[];waves=[];giantAcarajes=[];capoeiraFx=[];saciDecoys=[];heatAttackSeq=0;hiddenTeleport=null;hiddenSuperCharges=[];iceTiles=[];over=false;overT=0;winner=null;matchOver=-1;autoNext=false;
+ grid=[];bombs=[];flames=[];items=[];shurikens=[];heatAttackSeq=0;hiddenTeleport=null;hiddenSuperCharges=[];iceTiles=[];shockwaves=[];over=false;overT=0;winner=null;matchOver=-1;autoNext=false;
  for(let y=0;y<H;y++){grid[y]=[];for(let x=0;x<W;x++){
   let v=0;
   if(x==0||y==0||x==W-1||y==H-1||(x%2==0&&y%2==0))v=1;
   else if(!((x+y<=3)||((W-1-x)+(H-1-y)<=3))&&r()<.75)v=2;
   grid[y][x]=v}}
-  if(cfg.map=='favela'){
+ if(cfg.map=='favela'){
   // Casas coloridas em encostas e vielas; o veículo ocupa seis tiles no centro.
   [[4,1],[10,1],[1,4],[13,4],[2,7],[12,7],[4,11],[10,11]].forEach(([x,y])=>grid[y][x]=1);
   [[6,4],[7,4],[8,4],[6,5],[7,5],[8,5],[6,6],[7,6],[8,6],[6,7],[7,7],[8,7]].forEach(([x,y])=>grid[y][x]=4);
  }
  if(cfg.map=='feira')[[3,3],[7,3],[11,3],[3,9],[7,9],[11,9]].forEach(([x,y])=>grid[y][x]=3);
- const spawnTiles=[[1,1],[W-2,H-2],[W-2,1],[1,H-2],[Math.floor(W/2),H-2]];
- spawnTiles.forEach(([x,y])=>[[x,y],[x+1,y],[x-1,y],[x,y+1],[x,y-1]].forEach(([sx,sy])=>{if(sx>0&&sy>0&&sx<W-1&&sy<H-1)grid[sy][sx]=0}));
+ if(cfg.map=='prison'){
+  // Presídio Obscuro: quatro túneis horizontais atravessam a prisão de ponta a ponta.
+  const tunnels=[2,5,8,11];
+  tunnels.forEach(row=>{for(let x=1;x<W-1;x++)grid[row][x]=0;for(let x=1;x<W-1;x++){if(row>1)grid[row-1][x]=1;if(row<H-2)grid[row+1][x]=1}});
+  // Grades centrais dividem os pavilhões; os quatro túneis são as passagens rivais.
+  [6,8].forEach(col=>{for(let y=1;y<H-1;y++)if(!tunnels.includes(y))grid[y][col]=1});
+  [[3,1],[11,1],[3,12],[11,12],[5,4],[9,4],[5,9],[9,9]].forEach(([x,y])=>grid[y][x]=1);
+  // Caixas extras nos pavilhões: loot e espaço para abrir caminho.
+  for(let y=1;y<H-1;y++)for(let x=1;x<W-1;x++)if(grid[y][x]===0&&![2,5,8,11].includes(y)&&!PRISON_PORTALS.some(q=>q.x===x&&q.y===y)&&r()<.58)grid[y][x]=2;
+ }
+ // Spawn points always have a 2x2 escape pocket, even after map decorations.
+ const st=[[1,1],[W-2,H-2],[W-2,1],[1,H-2],[Math.floor(W/2),Math.floor(H/2)]];
+ st.slice(0, cfg.mode==='bot4'?5:cfg.mode==='bot2'?3:2).forEach(([x,y])=>[[x,y],[x-1,y],[x,y-1]].forEach(([sx,sy])=>{if(sx>0&&sx<W-1&&sy>0&&sy<H-1)grid[sy][sx]=0}));
  if(cfg.mode!='online'){const crates=[];for(let y=1;y<H-1;y++)for(let x=1;x<W-1;x++)if(grid[y][x]===2)crates.push({tx:x,ty:y});for(let i=crates.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[crates[i],crates[j]]=[crates[j],crates[i]]}hiddenTeleport=crates.pop()||null;hiddenSuperCharges=crates.splice(0,MAX_SUPER_CHARGES)}
  // Motos escondidas: sorteio pela semente da rodada (igual nos dois lados no online),
  // sem cair no caixote do teletransporte/supercarga.
@@ -596,9 +563,8 @@ function reset(sd){
   const caixotes=[];for(let y=1;y<H-1;y++)for(let x=1;x<W-1;x++)if(grid[y][x]===2&&!ocupados.has(x+','+y))caixotes.push(x+','+y);
   const rm=mk(seed+777);
   for(let n=0;n<MOTO_QTD&&caixotes.length;n++){const j=Math.floor(rm()*caixotes.length);motoCrates.add(caixotes.splice(j,1)[0])}}
- const st=spawnTiles;const active=cfg.mode=='bot'?Math.min(5,cfg.botCount+1):2;
- players.forEach((p,i)=>{Object.assign(p,{x:(st[i][0]+.5)*T,y:(st[i][1]+.5)*T,alive:true,spd:110,pim:0,maxB:1,range:2,active:0,pref:'x',dir:'down',walk:0,deadT:0,goal:null,tt:0,mount:null,abilityCd:0,dashT:0,dashDir:'down',invulnT:0,teleportReturn:null,superType:cfg.supers[i]||'heat',superEnergy:1,superCd:0,reverseT:0,bombLockT:0,stunT:0,cangacoT:0,heatStacks:0,heatHitIds:[],ninjaStacks:0,iceT:0,frozenT:0,flyingT:0,flyDir:'down',flyLastTX:-1,flyLastTY:-1,flyBombsLeft:0,aiKeys:{u:false,d:false,l:false,r:false},botDir:'down'})});
- players.forEach((p,i)=>{if(i>=active)p.alive=false});
+ playerCount=cfg.mode==='bot4'?5:cfg.mode==='bot2'?3:2;
+ players.forEach((p,i)=>{Object.assign(p,{x:(st[i][0]+.5)*T,y:(st[i][1]+.5)*T,alive:i<playerCount,spd:110,pim:0,maxB:1,range:2,active:0,pref:'x',dir:'down',walk:0,deadT:0,goal:null,tt:0,mount:null,abilityCd:0,dashT:0,dashDir:'down',invulnT:0,teleportReturn:null,superType:cfg.supers[i]||'heat',superEnergy:0,superCd:0,heatStacks:0,heatHitIds:[],ninjaStacks:0,iceT:0,frozenT:0,flyingT:0,stunT:0,bombBlockT:0,invertT:0,cangacoT:0,cangacoBonus:0,saciT:0,stuckT:0,lastX:0,lastY:0,aiStyle:i===1?'hunter':'scout',openingDone:false,lastBombAt:-9999,botState:'loot',spawnEscaped:false,spawnTx:st[i][0],spawnTy:st[i][1],flyDir:'down',flyLastTX:-1,flyLastTY:-1,flyBombsLeft:0,portalCd:0})});
 }
 function findFreeTileNear(target,maxDistance=3){
  const tx=tileOf(target.x),ty=tileOf(target.y),spots=[];
@@ -624,31 +590,28 @@ function returnAfterTeleportBomb(p){
  p.x=(spot.x+.5)*T;p.y=(spot.y+.5)*T;p.walk=0;p.dashT=0;p.teleportReturn=null;return true;
 }
 function setPlayers(){
- players.forEach((p,i)=>{p.bot=p.remote=false;p.skin=cfg.skin[i]||0;p.keys=null;p.t=null});
- if(cfg.mode=='local'){players[0].keys=K1;players[1].keys=K2}
- else if(cfg.mode=='bot'){players[0].keys=KO;for(let i=1;i<=cfg.botCount;i++){players[i].keys=KB;players[i].bot=true}}
+ playerCount=cfg.mode==='bot4'?5:cfg.mode==='bot2'?3:2;
+ players.forEach((p,i)=>{p.bot=false;p.remote=false;p.skin=cfg.skin[i];p.keys=null;p.t=null});
+ const [a,b,c]=players;
+ if(cfg.mode==='local'){a.keys=K1;b.keys=K2}
+ else if(cfg.mode==='bot'){a.keys=KO;b.keys=KB;b.bot=true}
+ else if(cfg.mode==='bot2'){a.keys=KO;b.keys=KB;c.keys=KB;b.bot=true;c.bot=true}
+ else if(cfg.mode==='bot4'){a.keys=KO;players.slice(1,5).forEach(p=>{p.keys=KB;p.bot=true})}
  else{const m=players[myIdx],o=players[1-myIdx];m.keys=KO;m.skin=cfg.skin[0];o.remote=true}
 }
 function startGame(sd){
  unlockAudio();
  try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock();}catch(e){}
  if(document.activeElement)document.activeElement.blur();
- scr='play';paused=false;$('menu').style.display='none';$('hud').style.display='flex';$('game-actions').style.display='flex';syncMobileControls();$('game-help').textContent=cfg.mode=='online'?'🥟 Acarajé = bomba · 🌶️ Pimenta = turbo · 🛢️ Dendê = chama maior · 🚓 Viatura (Espaço/Enter) = avanço em linha reta · 🏍️ Moto = 3 bombas à distância':'🥟 Acarajé = bomba · 🌶️ Pimenta = turbo · 🛢️ Dendê = chama maior · 🚓 Viatura: Espaço/Enter = bomba, Q (J1)/Num0 (J2) = arrancada · 🏍️ Moto = rajada de 3 bombas · 🐎 Cavalo = velocidade extra · 🛹 Skate = supervelocidade · 💊 Pílula escondida em caixa: teleporta perto do rival e volta após plantar bomba · ⚡ Super: E (P1)/Num1 (P2), até 5 cargas · 🔥 Calor derruba com 3 marcas · 🥷 Ninja desacelera por acerto; 5 acertos derrubam · Montaria absorve 1 explosão · No celular, controles touch abaixo da arena';$('game-help').style.display='block';document.querySelector('.page-title').style.display='block';setPlayers();reset(sd);const yt=$('ytPlayer');const ytLoaded=yt&&yt.src.startsWith('https://www.youtube.com/embed/');if(ytLoaded)bgm.pause();else if(musicEnabled){unlockAudio();bgm.play().catch(()=>{});}else bgm.pause();
+ scr='play';paused=false;$('menu').style.display='none';$('hud').style.display='flex';$('game-actions').style.display='flex';syncMobileControls();$('game-help').textContent=cfg.mode=='online'?'🥟 Acarajé = bomba · 🌶️ Pimenta = turbo · 🛢️ Dendê = chama maior':'🥟 Acarajé = bomba · 🌶️ Pimenta = turbo · 🛢️ Dendê = chama maior · 💊 Pílula escondida em caixa: teleporta perto do rival e volta após plantar bomba · ⚡ Super: E (P1)/Num1 (P2), até 5 cargas · 🔥 Calor derruba com 3 marcas · 🥷 Ninja desacelera por acerto; 5 acertos derrubam · No celular, controles touch abaixo da arena';$('game-help').style.display='block';document.querySelector('.page-title').style.display='block';setPlayers();reset(sd);const yt=$('ytPlayer');const ytLoaded=yt&&yt.src.startsWith('https://www.youtube.com/embed/');if(ytLoaded)bgm.pause();else if(musicEnabled){unlockAudio();bgm.play().catch(()=>{});}else bgm.pause();
 }
 function stopYouTube(){const y=$('ytPlayer');if(y)y.src='about:blank';bgm.pause()}
-function toMenu(msg){
+function toMenu(msg){hideVictory();
  scr='menu';paused=false;bgm.pause();$('menu').style.display='flex';$('hud').style.display='none';$('game-actions').style.display='none';$('game-help').style.display='none';syncMobileControls();document.querySelector('.page-title').style.display='none';
  if(room){room.leave().catch(()=>{});room=null;hadOpp=false}
  $('st').textContent=msg||'';refresh();
 }
-function syncMobileControls(){const box=$('mobileControls');if(!box)return;const active=scr=='play';const touchDevice=window.matchMedia('(pointer: coarse)').matches||(navigator.maxTouchPoints||0)>0;const forcedMobile=/mobile/i.test(location.pathname);const show=active&&(touchDevice||forcedMobile||innerWidth<=760);box.dataset.active=show?'true':'false';box.style.display=show?'flex':'none';box.style.visibility=show?'visible':'hidden';box.setAttribute('aria-hidden',show?'false':'true');document.body.dataset.gameMode=cfg.mode;$('touchP2').hidden=cfg.mode!='local';document.querySelectorAll('[data-touch-ability]').forEach(b=>b.hidden=cfg.mode=='online')}
-function syncRoundActions(){
- const box=$('roundActions');if(!box)return;
- const ready=scr=='play'&&over&&overT>1.2;if(!ready){box.classList.remove('visible');return}
- const final=matchOver>=0,champ=winner?nm(winner):'Empate';$('championName').textContent=final?(winner?nm(winner)+' é o campeão!':'Empate na partida'):champ;
- $('championKicker').textContent=final?'CAMPEÃO DA PARTIDA':'CAMPEÃO DA RODADA';$('championSub').textContent=final?'Vitória completa!':'Preparado para a próxima rodada?';$('nextRound').textContent=final?'🏆 Encerrar partida':'▶ Próxima rodada';box.classList.add('visible');
-}
-function nextRound(){if(scr!='play'||!over||cfg.mode=='online')return;if(matchOver>=0)toMenu();else reset()}
+function syncMobileControls(){const box=$('mobileControls');if(!box)return;const active=scr=='play';const mobile=cfg.platform==='mobile'||(cfg.platform==='auto'&&matchMedia('(pointer:coarse)').matches);box.dataset.platform=mobile?'mobile':'pc';box.dataset.active=active?'true':'false';box.style.display=active&&mobile?'flex':'none';box.setAttribute('aria-hidden',active&&mobile?'false':'true');document.body.dataset.gameMode=cfg.mode;$('touchP2').hidden=cfg.mode!='local';document.querySelectorAll('[data-touch-ability]').forEach(b=>b.hidden=cfg.mode=='online')}
 function togglePause(){if(scr!='play'||cfg.mode=='online')return;paused=!paused}
 
 /* ---------- entrada ---------- */
@@ -665,8 +628,10 @@ addEventListener('keydown',e=>{
  players.forEach((p,i)=>{
   if(!p.keys||p.bot||p.remote)return;
   const k=p.keys;
-  if(k.l.includes(e.code)||k.r.includes(e.code))p.pref='x';
-  if(k.u.includes(e.code)||k.d.includes(e.code))p.pref='y';
+  if(k.l.includes(e.code)){p.pref='x';p.dir='left'}
+  if(k.r.includes(e.code)){p.pref='x';p.dir='right'}
+  if(k.u.includes(e.code)){p.pref='y';p.dir='up'}
+  if(k.d.includes(e.code)){p.pref='y';p.dir='down'}
   if(k.b.includes(e.code)){
    if(over&&overT>1.2&&cfg.mode!='online'){matchOver>=0?toMenu():reset()}
    else placeBomb(p);
@@ -680,43 +645,58 @@ const touchPointers=new Map(),touchKeyHolds=new Map();
 function emitVirtualKey(type,code){window.dispatchEvent(new KeyboardEvent(type,{code,key:code,bubbles:true,cancelable:true}))}
 function releaseTouchPointer(id){
  const state=touchPointers.get(id);if(!state)return;touchPointers.delete(id);
- if(state.code){const holders=touchKeyHolds.get(state.code);if(holders){holders.delete(id);if(!holders.size){touchKeyHolds.delete(state.code);emitVirtualKey('keyup',state.code)}}}
- if(state.button&&!([...touchPointers.values()].some(v=>v.button===state.button)))state.button.classList.remove('pressed');
-}
-function pressTouchPointer(id,button){
- const previous=touchPointers.get(id);if(previous&&previous.button===button)return;
- if(previous)releaseTouchPointer(id);if(!button)return;
- const code=button.dataset.touchKey,holders=touchKeyHolds.get(code)||new Set();
- if(!holders.size)emitVirtualKey('keydown',code);holders.add(id);touchKeyHolds.set(code,holders);
- touchPointers.set(id,{code,button,dpad:button.closest('.touch-dpad')});button.classList.add('pressed');
- try{button.setPointerCapture(id)}catch{}
-}
-function dpadHit(e,dpad){
- const r=dpad.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2);if(Math.hypot(dx,dy)<7)return null;
- const dir=Math.abs(dx)>Math.abs(dy)?(dx<0?'left':'right'):(dy<0?'up':'down');
- const buttons=dpad.querySelectorAll('[data-touch-key]'),index={up:0,left:1,right:2,down:3}[dir];return buttons[index]||null;
+ const holders=touchKeyHolds.get(state.code);if(holders){holders.delete(id);if(!holders.size){touchKeyHolds.delete(state.code);emitVirtualKey('keyup',state.code)}}
+ if(![...touchPointers.values()].some(v=>v.button===state.button))state.button.classList.remove('pressed');
 }
 document.addEventListener('pointerdown',e=>{
- const direct=e.target instanceof Element?e.target.closest('[data-touch-key]'):null;const dpad=e.target instanceof Element?e.target.closest('.touch-dpad'):null;const button=direct||(dpad?dpadHit(e,dpad):null);if(!button)return;
- e.preventDefault();pressTouchPointer(e.pointerId,button);
+ const dpad=e.target instanceof Element?e.target.closest('.touch-dpad'):null;if(dpad)return;
+ const button=e.target instanceof Element?e.target.closest('[data-touch-key]'):null;if(!button)return;
+ e.preventDefault();if(touchPointers.has(e.pointerId))releaseTouchPointer(e.pointerId);
+ const code=button.dataset.touchKey,holders=touchKeyHolds.get(code)||new Set();
+ if(!holders.size)emitVirtualKey('keydown',code);holders.add(e.pointerId);touchKeyHolds.set(code,holders);touchPointers.set(e.pointerId,{code,button});button.classList.add('pressed');
+ try{button.setPointerCapture(e.pointerId)}catch{}
 },{passive:false});
-document.addEventListener('pointermove',e=>{
- const state=touchPointers.get(e.pointerId);if(!state||!state.dpad)return;
- const button=dpadHit(e,state.dpad);if(button){e.preventDefault();pressTouchPointer(e.pointerId,button)}
-},{passive:false});
-['pointerup','pointercancel'].forEach(type=>document.addEventListener(type,e=>releaseTouchPointer(e.pointerId),{passive:true}));
+const slidePointers=new Map();
+function slideCode(dpad,e){
+ const r=dpad.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+ let code=null;
+ if(Math.max(Math.abs(x),Math.abs(y))>.16){
+  if(Math.abs(x)>Math.abs(y))code=dpad.querySelector(x<0?'[data-touch-key$="Left"], [data-touch-key="KeyA"]':'[data-touch-key$="Right"], [data-touch-key="KeyD"]')?.dataset.touchKey;
+  else code=dpad.querySelector(y<0?'[data-touch-key$="Up"], [data-touch-key="KeyW"]':'[data-touch-key$="Down"], [data-touch-key="KeyS"]')?.dataset.touchKey;
+ }
+ return code||null;
+}
+function slideMove(dpad,e){
+ const old=slidePointers.get(e.pointerId)?.code,code=slideCode(dpad,e);
+ if(old===code)return;
+ if(old)emitVirtualKey('keyup',old);
+ if(code)emitVirtualKey('keydown',code);
+ slidePointers.set(e.pointerId,{code,dpad});
+}
+document.querySelectorAll('.touch-dpad').forEach(dpad=>{
+ dpad.addEventListener('pointerdown',e=>{e.preventDefault();try{dpad.setPointerCapture(e.pointerId)}catch{};slideMove(dpad,e)},{passive:false});
+ dpad.addEventListener('pointermove',e=>{if(slidePointers.has(e.pointerId)){e.preventDefault();slideMove(dpad,e)}},{passive:false});
+ ['pointerup','pointercancel','lostpointercapture'].forEach(type=>dpad.addEventListener(type,e=>{const st=slidePointers.get(e.pointerId);if(st?.code)emitVirtualKey('keyup',st.code);slidePointers.delete(e.pointerId)},{passive:true}));
+});
+document.addEventListener('pointermove',e=>{const st=slidePointers.get(e.pointerId);if(st){e.preventDefault();slideMove(st.dpad,e)}},{passive:false});
+function releaseSlide(id){const st=slidePointers.get(id);if(st?.code)emitVirtualKey('keyup',st.code);slidePointers.delete(id)}
+document.addEventListener('pointerup',e=>releaseSlide(e.pointerId),{passive:true});
+document.addEventListener('pointercancel',e=>releaseSlide(e.pointerId),{passive:true});
+['pointerup','pointercancel','lostpointercapture'].forEach(type=>document.addEventListener(type,e=>releaseTouchPointer(e.pointerId),{passive:true}));
 addEventListener('blur',()=>[...touchPointers.keys()].forEach(releaseTouchPointer));
 document.querySelectorAll('[data-touch-action]').forEach(button=>button.addEventListener('click',()=>{if(button.dataset.touchAction=='pause')togglePause();else if(button.dataset.touchAction=='menu')toMenu();else if(button.dataset.touchAction=='stop-audio')$('stopAudio').click()}));
 
 /* ---------- física ---------- */
 function overlap(p,b){return p.x+R>b.tx*T&&p.x-R<(b.tx+1)*T&&p.y+R>b.ty*T&&p.y-R<(b.ty+1)*T}
-function solid(tx,ty,p){
+function solid(tx,ty,p,ignoreBomb=null){
  if(tx<0||ty<0||tx>=W||ty>=H)return true;
  const tile=grid[ty][tx];
  if(tile&&!(tile==2&&p.mount=='police'&&p.dashT>0))return true;
- return bombs.some(b=>b.tx==tx&&b.ty==ty&&!b.thru.includes(p));
+ return bombs.some(b=>b!==ignoreBomb&&b.tx==tx&&b.ty==ty);
 }
-function blocked(x,y,p){return solid(tileOf(x-R),tileOf(y-R),p)||solid(tileOf(x+R),tileOf(y-R),p)||solid(tileOf(x-R),tileOf(y+R),p)||solid(tileOf(x+R),tileOf(y+R),p)}
+function blocked(x,y,p){
+ const candidate={x,y},exitBomb=bombs.find(b=>b.thru.includes(p)&&overlap(p,b));
+ return solid(tileOf(x-R),tileOf(y-R),p,exitBomb)||solid(tileOf(x+R),tileOf(y-R),p,exitBomb)||solid(tileOf(x-R),tileOf(y+R),p,exitBomb)||solid(tileOf(x+R),tileOf(y+R),p,exitBomb)}
 function step(p,dx,dy){
  if(!blocked(p.x+dx,p.y+dy,p)){p.x+=dx;p.y+=dy;return}
  if(dx){const d=(tileOf(p.y)+.5)*T-p.y,n=Math.sign(d)*Math.min(Math.abs(d),Math.abs(dx));if(Math.abs(d)<T*.45&&!blocked(p.x,p.y+n,p))p.y+=n}
@@ -735,13 +715,8 @@ function startPoliceDash(p){
  p.dashDir=p.dir;p.dashT=.62;p.abilityCd=2.6;
 }
 function useMountAbility(p){if(cfg.mode!='online'&&p.mount=='police')startPoliceDash(p)}
-
-function botCanEscapeAfterBomb(p,tx,ty,range){
- const danger=dangerSet(2.25);blast(tx,ty,range).forEach(c=>danger.add(c));
- return !!bfs(p,tx,ty,(x,y)=>!danger.has(x+','+y),new Set(),12);
-}
 function placeBomb(p){
- if(!p.alive||over||p.frozenT>0||p.bombLockT>0)return;
+ if(!p.alive||over||p.frozenT>0||p.bombBlockT>0||p.stunT>0)return;
  if(p.mount=='police'&&cfg.mode=='online'){startPoliceDash(p);return}
  if(p.mount=='moto'){
   if(p.abilityCd>0)return;
@@ -757,9 +732,11 @@ function placeBomb(p){
   if(!fired)p.abilityCd=.7;
   return;
  }
- if(p.active>=p.maxB+(p.cangacoT>0?2:0))return;
- const tx=tileOf(p.x),ty=tileOf(p.y);
- if(p.bot&&!botCanEscapeAfterBomb(p,tx,ty,p.range))return;
+ if(p.active>=p.maxB)return;
+ const [dx,dy]=DIRVEC[p.dir]||DIRVEC.down;
+ let tx=tileOf(p.x)+dx,ty=tileOf(p.y)+dy;
+ const frontBlocked=tx<=0||ty<=0||tx>=W-1||ty>=H-1||grid[ty]?.[tx]!==0||bombs.some(b=>b.tx===tx&&b.ty===ty);
+ if(frontBlocked){tx=tileOf(p.x);ty=tileOf(p.y);if(grid[ty]?.[tx]!==0||bombs.some(b=>b.tx===tx&&b.ty===ty))return;}
  if(launchBomb(p,tx,ty))returnAfterTeleportBomb(p);
 }
 function castHeat(p){
@@ -771,9 +748,52 @@ function castIce(p){
  for(let k=1;k<=6;k++){const x=ox+dx*k,y=oy+dy*k;if(x<=0||y<=0||x>=W-1||y>=H-1||grid[y][x])break;iceTiles.push({tx:x,ty:y,t:7,owner:p})}
 }
 function stealTwoStats(p){
- const rival=nearestRival(p);if(!rival)return false;let moved=0;
+ const rival=players[1-players.indexOf(p)];if(!rival||!rival.alive)return false;let moved=0;
  for(let i=0;i<2;i++){const options=[];if(rival.pim>0&&p.pim<5)options.push('speed');if(rival.maxB>1&&p.maxB<6)options.push('bomb');if(rival.range>2&&p.range<8)options.push('range');if(!options.length)break;const stat=options[Math.floor(Math.random()*options.length)];if(stat==='speed'){rival.pim--;rival.spd=Math.max(110,rival.spd-20);p.pim++;p.spd+=20}else if(stat==='bomb'){rival.maxB--;p.maxB++}else{rival.range--;p.range++}moved++}
  return moved>0;
+}
+function pushTarget(source,target,distance=1){
+ const dx=tileOf(target.x)-tileOf(source.x),dy=tileOf(target.y)-tileOf(source.y);
+ const ax=Math.abs(dx)>=Math.abs(dy)?(dx<0?-1:1):0,ay=ax?0:(dy<0?-1:1);
+ if(target.cangacoT>0)return false;
+ const oldX=target.x,oldY=target.y;step(target,ax*distance*T,ay*distance*T);return target.x!==oldX||target.y!==oldY;
+}
+function castTide(p){
+ const [dx,dy]=DIRVEC[p.dir]||DIRVEC.down,ox=tileOf(p.x),oy=tileOf(p.y);
+ // A maré apaga chamas comuns e empurra quem estiver na faixa.
+ flames=flames.filter(f=>f.kind==='heat'||Math.abs(f.tx-ox)>6||Math.abs(f.ty-oy)>6||((dx&&f.ty!==oy)||(dy&&f.tx!==ox)));
+ players.forEach(q=>{if(q!==p&&q.alive){const d=dx?Math.abs(tileOf(q.y)-oy):Math.abs(tileOf(q.x)-ox),line=dx?tileOf(q.y)===oy:tileOf(q.x)===ox;if(line&&d<=6){pushTarget(p,q,1);q.stunT=Math.max(q.stunT||0,.8)}}});
+}
+function castGiant(p){
+ const [dx,dy]=DIRVEC[p.dir]||DIRVEC.down,ox=tileOf(p.x),oy=tileOf(p.y);
+ for(let k=1;k<=6;k++){const x=ox+dx*k,y=oy+dy*k;if(x<=0||y<=0||x>=W-1||y>=H-1)break;if(grid[y][x]===1||grid[y][x]===4)break;if(grid[y][x]===2){breakDestructible(x,y,false,true);break}const q=players.find(q=>q!==p&&q.alive&&tileOf(q.x)===x&&tileOf(q.y)===y);if(q){pushTarget(p,q,1);q.stunT=1.5;break}}
+}
+function castCapoeira(p){
+ p.invulnT=Math.max(p.invulnT||0,1);players.forEach(q=>{if(q!==p&&q.alive){const d=Math.abs(tileOf(q.x)-tileOf(p.x))+Math.abs(tileOf(q.y)-tileOf(p.y));if(d<=2){pushTarget(p,q,1);q.stunT=1.2;q.bombBlockT=2}}});
+}
+function castCangaco(p){p.cangacoT=6;p.cangacoBonus=2;p.maxB+=2;p.spd+=45;p.invulnT=Math.max(p.invulnT||0,.5)}
+function castSaci(p){
+ const ox=tileOf(p.x),oy=tileOf(p.y),spots=[];
+ for(let y=1;y<H-1;y++)for(let x=1;x<W-1;x++){
+  const d=Math.abs(x-ox)+Math.abs(y-oy);if(d<3||d>7||grid[y][x]!==0)continue;
+  if(bombs.some(b=>b.tx===x&&b.ty===y)||flames.some(f=>f.tx===x&&f.ty===y)||players.some(q=>q!==p&&q.alive&&tileOf(q.x)===x&&tileOf(q.y)===y))continue;
+  spots.push({x,y});
+ }
+ if(!spots.length)return false;
+ const spot=spots[Math.floor(Math.random()*spots.length)];
+ bombs.push({tx:ox,ty:oy,t:1.15,owner:p,range:0,thru:[p],fake:true});
+ p.x=(spot.x+.5)*T;p.y=(spot.y+.5)*T;p.saciT=.7;p.walk=0;return true;
+}
+function castTrio(p){
+ const [dx,dy]=DIRVEC[p.dir]||DIRVEC.down,ox=tileOf(p.x),oy=tileOf(p.y),cells=[];
+ for(let k=1;k<=7;k++){
+  const x=ox+dx*k,y=oy+dy*k;if(x<=0||y<=0||x>=W-1||y>=H-1)break;
+  const tile=grid[y][x];if(tile===1||tile===4)break;
+  cells.push({x,y});
+  if(tile===2){breakDestructible(x,y,false,true);break;}
+  players.forEach(q=>{if(q!==p&&q.alive&&tileOf(q.x)===x&&tileOf(q.y)===y){pushTarget(p,q,1.2);q.stunT=Math.max(q.stunT||0,1.6);q.bombBlockT=Math.max(q.bombBlockT||0,.7)}});
+ }
+ if(cells.length)shockwaves.push({cells,t:.62,owner:p});
 }
 function useSuper(p){
  if(cfg.mode==='online'||!p.alive||over||p.superEnergy<=0||p.frozenT>0||p.flyingT>0)return false;
@@ -783,79 +803,23 @@ function useSuper(p){
  else if(type==='thief'&&!stealTwoStats(p))return false;
  else if(type==='fly'){p.dashT=0;p.flyingT=1.5;p.flyDir=p.dir;p.flyLastTX=tileOf(p.x);p.flyLastTY=tileOf(p.y);p.flyBombsLeft=5}
  else if(type==='ninja')throwShuriken(p);
- else if(type==='macumba'&&!castMacumba(p))return false;
- else if(type==='mare')castMare(p);
- else if(type==='acarajeGigante')throwGiantAcaraje(p);
- else if(type==='capoeira'&&!castCapoeira(p))return false;
- else if(type==='cangaco')activateCangaco(p);
+ else if(type==='tide')castTide(p);
+ else if(type==='giant')castGiant(p);
+ else if(type==='capoeira')castCapoeira(p);
+ else if(type==='cangaco')castCangaco(p);
  else if(type==='saci'&&!castSaci(p))return false;
+ else if(type==='trio')castTrio(p);
+ else if(type==='cloud'){p.dashT=0;p.flyingT=10;p.flyDir=p.dir;p.flyLastTX=tileOf(p.x);p.flyLastTY=tileOf(p.y);p.flyBombsLeft=5}
  p.superEnergy--;return true;
 }
 function flyStep(p,dt){
  p.flyingT=Math.max(0,p.flyingT-dt);const [dx,dy]=DIRVEC[p.flyDir]||DIRVEC[p.dir]||DIRVEC.down;
  const minX=1.5*T,maxX=(W-1.5)*T,minY=1.5*T,maxY=(H-1.5)*T;
  p.x=Math.max(minX,Math.min(maxX,p.x+dx*280*dt));p.y=Math.max(minY,Math.min(maxY,p.y+dy*280*dt));p.dir=p.flyDir;p.walk+=dt*14;
- const tx=tileOf(p.x),ty=tileOf(p.y);if(tx!==p.flyLastTX||ty!==p.flyLastTY){p.flyLastTX=tx;p.flyLastTY=ty;if(grid[ty][tx]===2)breakDestructible(tx,ty,false,false);if(grid[ty][tx]===0&&p.flyBombsLeft>0&&launchBomb(p,tx,ty)){p.flyBombsLeft--;if(!p.flyBombsLeft)p.flyingT=0}}
+ const tx=tileOf(p.x),ty=tileOf(p.y);if(tx!==p.flyLastTX||ty!==p.flyLastTY){p.flyLastTX=tx;p.flyLastTY=ty;if(grid[ty][tx]===2)breakDestructible(tx,ty,false,false);if(grid[ty][tx]===0&&p.flyBombsLeft>0&&launchBomb(p,tx,ty)){p.flyBombsLeft--;if(!p.flyBombsLeft&&p.superType!=='cloud')p.flyingT=0}}
  if((dx<0&&p.x<=minX)||(dx>0&&p.x>=maxX)||(dy<0&&p.y<=minY)||(dy>0&&p.y>=maxY))p.flyingT=0;
 }
 function throwShuriken(p){const [dx,dy]=DIRVEC[p.dir]||DIRVEC.down;shurikens.push({x:p.x+dx*15,y:p.y+dy*15,dx,dy,distance:0,spin:0,owner:p,dead:false})}
-function findMacumbaSpots(target,count=2){
- const tx=tileOf(target.x),ty=tileOf(target.y),spots=[];
- for(let y=1;y<H-1;y++)for(let x=1;x<W-1;x++){
-  if(grid[y][x]!==0||bombs.some(b=>b.tx===x&&b.ty===y)||flames.some(f=>f.tx===x&&f.ty===y))continue;
-  if(players.some(p=>p.alive&&tileOf(p.x)===x&&tileOf(p.y)===y))continue;
-  spots.push({x,y,d:Math.abs(x-tx)+Math.abs(y-ty)});
- }
- spots.sort((a,b)=>a.d-b.d||a.y-b.y||a.x-b.x);
- return spots.slice(0,count);
-}
-function castMacumba(p){
- const rival=nearestRival(p);if(!rival)return false;
- const spots=findMacumbaSpots(rival,2);if(spots.length<2)return false;
- spots.forEach(spot=>macumbaDrums.push({tx:spot.x,ty:spot.y,t:1.15,owner:p,ghostSpawned:false}));
- return true;
-}
-function updateMacumba(dt){
- macumbaDrums.forEach(d=>{d.t-=dt;if(d.t<=0&&!d.ghostSpawned){d.ghostSpawned=true;const target=players[1-players.indexOf(d.owner)];macumbaGhosts.push({x:(d.tx+.5)*T,y:(d.ty+.5)*T,owner:d.owner,target,life:12,attached:false,dead:false})}});
- macumbaDrums=macumbaDrums.filter(d=>!d.ghostSpawned);
- macumbaGhosts.forEach(g=>{
-  if(g.dead||g.life<=0){g.dead=true;return}g.life-=dt;
-  const target=g.target&&g.target.alive?g.target:players[1-players.indexOf(g.owner)];if(!target||!target.alive)return;g.target=target;
-  if(g.attached){g.x=target.x;g.y=target.y;target.reverseT=Math.max(target.reverseT,.3);return}
-  const dx=target.x-g.x,dy=target.y-g.y,dist=Math.hypot(dx,dy)||1,step=88*dt;
-  g.x+=dx/dist*Math.min(step,dist);g.y+=dy/dist*Math.min(step,dist);
-  if(dist<=R+10){g.attached=true;target.reverseT=5}
- });
- macumbaGhosts=macumbaGhosts.filter(g=>!g.dead);
-}
-function castMare(p){
- const [dx,dy]=DIRVEC[p.dir]||DIRVEC.down;waves.push({x:p.x+dx*18,y:p.y+dy*18,dx,dy,owner:p,life:2.2,dead:false});return true;
-}
-function castCapoeira(p){
- const rival=nearestRival(p);if(!rival)return false;
- capoeiraFx.push({x:p.x,y:p.y,t:.7});const dx=rival.x-p.x,dy=rival.y-p.y,dist=Math.hypot(dx,dy)||1;
- if(dist<=T*2.15){rival.bombLockT=2.2;rival.stunT=.7;if(!rival.cangacoT){const push=42;step(rival,dx/dist*push,dy/dist*push)}}return true;
-}
-function activateCangaco(p){p.cangacoT=5;p.abilityCd=0;return true}
-function castSaci(p){
- const spots=[];const ox=tileOf(p.x),oy=tileOf(p.y);
- for(let y=1;y<H-1;y++)for(let x=1;x<W-1;x++){
-  if(grid[y][x]!==0||Math.abs(x-ox)+Math.abs(y-oy)<4||bombs.some(b=>b.tx===x&&b.ty===y)||flames.some(f=>f.tx===x&&f.ty===y))continue;
-  if(players.some(q=>q.alive&&tileOf(q.x)===x&&tileOf(q.y)===y))continue;spots.push({x,y,d:Math.abs(x-ox)+Math.abs(y-oy)});
- }
- if(!spots.length)return false;spots.sort((a,b)=>b.d-a.d);const spot=spots[Math.floor((time*1000+seed)%Math.min(spots.length,Math.max(1,Math.floor(spots.length*.35))))];
- saciDecoys.push({tx:ox,ty:oy,t:6});p.x=(spot.x+.5)*T;p.y=(spot.y+.5)*T;p.invulnT=1;p.walk=0;return true;
-}
-function throwGiantAcaraje(p){const [dx,dy]=DIRVEC[p.dir]||DIRVEC.down;giantAcarajes.push({x:p.x+dx*18,y:p.y+dy*18,dx,dy,owner:p,life:3,dead:false});return true}
-function giantBurst(g){
- const tx=tileOf(g.x),ty=tileOf(g.y);addFlame(tx,ty,'bomb',null,g.owner);
- [[1,0],[-1,0],[0,1],[0,-1]].forEach(([dx,dy])=>{for(let k=1;k<=2;k++){const x=tx+dx*k,y=ty+dy*k;if(!grid[y]||grid[y][x]===1||grid[y][x]===4)break;if(grid[y][x]===2){breakDestructible(x,y,true,true,{kind:'bomb',owner:g.owner});break}addFlame(x,y,'bomb',null,g.owner)}});
-}
-function updateExtraSupers(dt){
- waves.forEach(w=>{w.life-=dt;w.x+=w.dx*220*dt;w.y+=w.dy*220*dt;const tx=tileOf(w.x),ty=tileOf(w.y);if(w.life<=0||!grid[ty]||grid[ty][tx]===1||grid[ty][tx]===4){w.dead=true;return}flames=flames.filter(f=>f.tx!==tx||f.ty!==ty);players.forEach(q=>{if(q!==w.owner&&q.alive&&Math.hypot(q.x-w.x,q.y-w.y)<22){if(!q.cangacoT)step(q,w.dx*45,w.dy*45);q.stunT=Math.max(q.stunT,.35)}});macumbaGhosts.forEach(g=>{if(Math.hypot(g.x-w.x,g.y-w.y)<24){g.x+=w.dx*35;g.y+=w.dy*35}})});waves=waves.filter(w=>!w.dead);
- giantAcarajes.forEach(g=>{g.life-=dt;g.x+=g.dx*240*dt;g.y+=g.dy*240*dt;const tx=tileOf(g.x),ty=tileOf(g.y);if(g.life<=0||!grid[ty]||grid[ty][tx]===1||grid[ty][tx]===4){giantBurst(g);g.dead=true;return}if(grid[ty][tx]===2){breakDestructible(tx,ty,true,false);giantBurst(g);g.dead=true;return}players.forEach(q=>{if(q!==g.owner&&q.alive&&Math.hypot(q.x-g.x,q.y-g.y)<23){q.stunT=.8;g.dead=true;giantBurst(g)}})});giantAcarajes=giantAcarajes.filter(g=>!g.dead);
- capoeiraFx.forEach(f=>f.t-=dt);capoeiraFx=capoeiraFx.filter(f=>f.t>0);saciDecoys.forEach(d=>d.t-=dt);saciDecoys=saciDecoys.filter(d=>d.t>0);
-}
 function landNinjaHit(owner,target){
  target.ninjaStacks=Math.min(5,(target.ninjaStacks||0)+1);
  const tx=tileOf(target.x),ty=tileOf(target.y);if(grid[ty]&&grid[ty][tx]===0&&!bombs.some(b=>b.tx===tx&&b.ty===ty))launchBomb(owner,tx,ty);
@@ -868,16 +832,11 @@ function updateShurikens(dt){
   if(bombs.some(b=>b.tx===tx&&b.ty===ty)||s.distance>=6*T)s.dead=true;
  });shurikens=shurikens.filter(s=>!s.dead);
 }
-function addFlame(tx,ty,kind='bomb',attackId=null,owner=null){flames.push({tx,ty,t:.5,kind,attackId,owner});if(kind==='bomb')macumbaGhosts.forEach(g=>{if(tileOf(g.x)===tx&&tileOf(g.y)===ty){g.dead=true;if(g.target)g.target.reverseT=0}});items=items.filter(i=>!(i.tx==tx&&i.ty==ty&&i.type!='moto'))}
+function addFlame(tx,ty,kind='bomb',attackId=null,owner=null){flames.push({tx,ty,t:.5,kind,attackId,owner});items=items.filter(i=>i.tx!=tx||i.ty!=ty)}
 function dropBlockLoot(tx,ty){
- if(motoCrates.has(tx+','+ty)){items.push({tx,ty,type:'moto'});return}
  if(hash(tx,ty)>=.3)return;
- const r=hash(tx+99,ty);let type;
- if(r<.1)type='police';
- else if(r<.2)type='moto';
- else if(cfg.mode!='online'&&r<.3)type='horse';
- else if(cfg.mode!='online'&&r<.4)type='skate';
- else{const cut=cfg.mode!='online' ? .4 : .2,span=cfg.mode!='online' ? .6 : .8,q=(r-cut)/span;type=q<.4?'pim':q<.7?'bomb':'fire'}
+ const r=hash(tx+99,ty),q=r/.3;
+ const type=q<.42?'pim':q<.72?'bomb':'fire';
  items.push({tx,ty,type});
 }
 function breakDestructible(tx,ty,notify=true,flame=false,flameMeta=null){
@@ -891,84 +850,139 @@ function breakDestructible(tx,ty,notify=true,flame=false,flameMeta=null){
 }
 function detonate(b){
  const i=bombs.indexOf(b);if(i<0)return;
- bombs.splice(i,1);b.owner.active--;boom();
- addFlame(b.tx,b.ty);
+ bombs.splice(i,1);if(!b.fake)b.owner.active--;if(b.fake)return;boom();
+ addFlame(b.tx,b.ty,'bomb',null,b.owner);
  [[1,0],[-1,0],[0,1],[0,-1]].forEach(([dx,dy])=>{
   for(let k=1;k<=b.range;k++){
    const x=b.tx+dx*k,y=b.ty+dy*k;
    if(grid[y][x]&&grid[y][x]!=2)break;
    if(grid[y][x]==2){
-    breakDestructible(x,y,cfg.mode!='online'||!b.owner.remote,true);
+    breakDestructible(x,y,cfg.mode!='online'||!b.owner.remote,true,{kind:'bomb',owner:b.owner});
     break;
    }
    const ob=bombs.find(o=>o.tx==x&&o.ty==y);
-   if(ob){addFlame(x,y);detonate(ob);break}
-   addFlame(x,y);
+   if(ob){addFlame(x,y,'bomb',null,ob.owner);detonate(ob);break}
+   addFlame(x,y,'bomb',null,b.owner);
   }
  });
 }
 
 /* ---------- bot ---------- */
 const DIRS=[[1,0],[-1,0],[0,1],[0,-1]];
-const LV=[{iv:.12,aw:1.8,agr:.72},{iv:.07,aw:2.5,agr:.94},{iv:.035,aw:3.6,agr:1}];
+const LV=[{iv:.4,aw:.9,agr:.3},{iv:.2,aw:1.6,agr:.7},{iv:.08,aw:2.4,agr:1}];
 function blast(tx,ty,r){const o=[tx+','+ty];DIRS.forEach(([dx,dy])=>{for(let k=1;k<=r;k++){const x=tx+dx*k,y=ty+dy*k;if(grid[y][x]&&grid[y][x]!=2)break;o.push(x+','+y);if(grid[y][x]==2)break}});return o}
 function dangerSet(thr){const D=new Set();flames.forEach(f=>D.add(f.tx+','+f.ty));bombs.forEach(b=>{if(b.t<=thr)blast(b.tx,b.ty,b.range).forEach(c=>D.add(c))});return D}
-const free=(x,y,p)=>!grid[y][x]&&!bombs.some(b=>b.tx==x&&b.ty==y&&!b.thru.includes(p));
+const free=(x,y,p)=>x>0&&y>0&&x<W-1&&y<H-1&&grid[y][x]===0&&!bombs.some(b=>b.tx==x&&b.ty==y)&&!players.some(q=>q!==p&&q.alive&&tileOf(q.x)===x&&tileOf(q.y)===y);
+function botDirs(p){return (p.aiStyle||'hunter')==='hunter'?[[0,-1],[1,0],[0,1],[-1,0]]:[[1,0],[0,1],[-1,0],[0,-1]]}
 function bfs(p,sx,sy,goal,avoid,max){
  const q=[[sx,sy,0]],prev={[sx+','+sy]:null};
  while(q.length){
   const [x,y,d]=q.shift();
   if(d&&goal(x,y)){const path=[];let c=x+','+y;while(prev[c]!==null){path.unshift(c.split(',').map(Number));c=prev[c]}return path}
   if(d>=max)continue;
-  for(const [dx,dy] of DIRS){const nx=x+dx,ny=y+dy,c=nx+','+ny;
+  for(const [dx,dy] of botDirs(p)){const nx=x+dx,ny=y+dy,c=nx+','+ny;
    if(!(c in prev)&&free(nx,ny,p)&&!avoid.has(c)){prev[c]=x+','+y;q.push([nx,ny,d+1])}}
  }
  return null;
 }
-function nearestRival(p){
- return players.filter(q=>q!==p&&q.alive).sort((a,b)=>Math.hypot(a.x-p.x,a.y-p.y)-Math.hypot(b.x-p.x,b.y-p.y))[0]||null;
-}
-
-function botSuperTarget(p,L,tx,ty,D){
- if(p.superEnergy>=MAX_SUPER_CHARGES)return null;
- const revealed=items.filter(i=>i.type==='supercharge').sort((a,b)=>Math.abs(a.tx-tx)+Math.abs(a.ty-ty)-Math.abs(b.tx-tx)-Math.abs(b.ty-ty))[0];
- if(revealed){const path=bfs(p,tx,ty,(x,y)=>x===revealed.tx&&y===revealed.ty,D,35);if(path)return path;}
- const hidden=hiddenSuperCharges.slice().sort((a,b)=>Math.abs(a.tx-tx)+Math.abs(a.ty-ty)-Math.abs(b.tx-tx)-Math.abs(b.ty-ty))[0];
- if(hidden){const path=bfs(p,tx,ty,(x,y)=>Math.abs(x-hidden.tx)+Math.abs(y-hidden.ty)===1,D,35);if(path){if(Math.abs(hidden.tx-tx)+Math.abs(hidden.ty-ty)===1&&p.active<p.maxB+(p.cangacoT>0?2:0)){const safe=new Set(D);blast(tx,ty,p.range).forEach(c=>safe.add(c));if(bfs(p,tx,ty,(x,y)=>!safe.has(x+','+y),new Set(),8))placeBomb(p)}return path;}}
- return null;
+function safeBombPlan(p,horizon){
+ const tx=tileOf(p.x),ty=tileOf(p.y),D=new Set(dangerSet(horizon||4.5));
+ if(D.has(tx+','+ty)||p.active>=p.maxB||bombs.some(b=>b.tx===tx&&b.ty===ty))return null;
+ const after=new Set(D);blast(tx,ty,p.range).forEach(c=>after.add(c));
+ const exits=DIRS.filter(([dx,dy])=>free(tx+dx,ty+dy,p)&&!after.has((tx+dx)+','+(ty+dy))).length;
+ const path=bfs(p,tx,ty,(x,y)=>!after.has(x+','+y),new Set(),16);
+ const cautious=p.aiStyle==='scout';
+ const adjacentCrate=DIRS.some(([dx,dy])=>grid[ty+dy]?.[tx+dx]===2);
+ if(!path&&!D.has(tx+','+ty)&&adjacentCrate)return {path:null,exits:0,boxed:true};
+ if(!path||exits<(cautious?2:1)||path.length<(cautious?3:2))return null;
+ return {path,exits};
 }
 function decide(p,L){
  const tx=tileOf(p.x),ty=tileOf(p.y),me=tx+','+ty;
- const foe=nearestRival(p);
- if(p.active<p.maxB&&!bombs.some(b=>b.tx==tx&&b.ty==ty)){
-  const near=DIRS.some(([dx,dy])=>grid[ty+dy][tx+dx]==2);
-  const fn=foe&&Math.abs(tileOf(foe.x)-tx)+Math.abs(tileOf(foe.y)-ty)<=2+cfg.diff;
-  if((near||fn||foe)&&Math.random()<L.agr){
-   const D2=new Set(dangerSet(L.aw));blast(tx,ty,p.range).forEach(c=>D2.add(c));
-   if(bfs(p,tx,ty,(x,y)=>!D2.has(x+','+y),new Set(),6))placeBomb(p);
+ const foe=players.filter(q=>q!==p&&q.alive).sort((a,b)=>(Math.abs(tileOf(a.x)-tileOf(p.x))+Math.abs(tileOf(a.y)-tileOf(p.y)))-(Math.abs(tileOf(b.x)-tileOf(p.x))+Math.abs(tileOf(b.y)-tileOf(p.y))))[0]||null;
+ const style=p.aiStyle||'hunter';
+ // A bot only drops a bomb when it can prove that an escape route exists.
+ // The old check could accept a route that became blocked by a chain reaction.
+ const plan=safeBombPlan(p,p.aiStyle==='scout'?4.8:3.2);
+ const near=DIRS.some(([dx,dy])=>grid[ty+dy]?.[tx+dx]===2);
+ const fn=foe&&Math.abs(tileOf(foe.x)-tx)+Math.abs(tileOf(foe.y)-ty)<=2+cfg.diff;
+ const bombChance=p.aiStyle==='hunter'?Math.max(.94,L.agr):(Math.max(.82,L.agr*.7));
+ const openingMove=near&&!p.openingDone;
+ const timeToOpen=near&&(performance.now()-(p.lastBombAt||-9999)>1800);
+ const forceOpen=near&&p.active<p.maxB&&!bombs.some(b=>b.tx===tx&&b.ty===ty)&&timeToOpen;
+ const forceAttack=fn&&p.active<p.maxB&&!dangerSet(4.8).has(me)&&!bombs.some(b=>b.tx===tx&&b.ty===ty)&&performance.now()-(p.lastBombAt||-9999)>1600;
+ if(forceAttack){
+  const before=p.active;placeBomb(p);
+  if(p.active>before){
+   p.lastBombAt=performance.now();p.botState='attack';
+   p.goal=plan?.path?.[0]||bfs(p,tx,ty,(x,y)=>free(x,y,p),new Set(),5)?.[0]||null;
+   p.escapeUntil=performance.now()+1900;return;
   }
  }
- const D=dangerSet(L.aw);let path=botSuperTarget(p,L,tx,ty,D);
- if(!path&&D.has(me))path=bfs(p,tx,ty,(x,y)=>!D.has(x+','+y),new Set(),8);
+ if(forceOpen){
+  const before=p.active;placeBomb(p);
+  if(p.active>before){
+   p.openingDone=true;p.lastBombAt=performance.now();
+   p.goal=plan?.path?.[0]||bfs(p,tx,ty,(x,y)=>free(x,y,p),new Set(),5)?.[0]||null;
+   p.escapeUntil=performance.now()+1900;return;
+  }
+ }
+ if(plan&&((openingMove||timeToOpen||fn)&&(openingMove||timeToOpen||Math.random()<bombChance))){
+  const before=p.active;placeBomb(p);
+  if(p.active>before){p.openingDone=true;p.lastBombAt=performance.now();p.goal=plan.path&&plan.path[0]||null;p.escapeUntil=performance.now()+1900;return;}
+ }
+ const D=dangerSet(p.aiStyle==='scout'?4.8:Math.max(L.aw,3.2));let path;
+ if(D.has(me))path=bfs(p,tx,ty,(x,y)=>!D.has(x+','+y),new Set(),8);
  else{
   const soft=(x,y)=>DIRS.some(([dx,dy])=>grid[y+dy][x+dx]==2);
-  const hunt=!!foe&&Math.random()<(.72+.12*cfg.diff);
   const fx=foe?tileOf(foe.x):0,fy=foe?tileOf(foe.y):0;
+  const foeDistance=foe?Math.abs(fx-tx)+Math.abs(fy-ty):Infinity;
+  const enemyNear=!!foe&&foeDistance<=6;
+  const hunt=!!foe&&(enemyNear||(style==='hunter'&&cfg.diff>0&&Math.random()<.9));
+  // Loot is the default objective; a nearby enemy temporarily takes priority.
+  const targetItem=!enemyNear&&items.find(i=>['supercharge','pim','bomb','fire'].includes(i.type));
+  const patrolGoal=!enemyNear&&!targetItem&&((Math.floor(time*1.2)+players.indexOf(p))%2===0);
+  p.botState=enemyNear?'attack':targetItem?'loot':patrolGoal?'patrol':'open';
   const mt=!p.mount&&items.find(i=>i.type=='moto');
-  if(mt&&Math.random()<.7)path=bfs(p,tx,ty,(x,y)=>x==mt.tx&&y==mt.ty,D,30);
-  if(!path)path=bfs(p,tx,ty,hunt?(x,y)=>Math.abs(x-fx)+Math.abs(y-fy)<=1:soft,D,30);
+  if(targetItem)path=bfs(p,tx,ty,(x,y)=>x==targetItem.tx&&y==targetItem.ty,D,30);
+  if(!path&&!enemyNear&&mt&&style==='scout'&&Math.random()<.9)path=bfs(p,tx,ty,(x,y)=>x==mt.tx&&y==mt.ty,D,30);
+  if(!path)path=bfs(p,tx,ty,hunt?(x,y)=>Math.abs(x-fx)+Math.abs(y-fy)<=1:patrolGoal?((x,y)=>(x+y+Math.floor(time))%4===0):soft,D,30);
+  // If the area has no boxes left, keep roaming toward the rival or any safe tile.
+  if(!path&&style==='hunter'&&foe)path=bfs(p,tx,ty,(x,y)=>Math.abs(x-fx)+Math.abs(y-fy)<=3,D,30);
+  if(!path)path=bfs(p,tx,ty,style==='scout'?(x,y)=>(x+y+Math.floor(time))%3===0:()=>true,D,12);
+  if(!path)path=bfs(p,tx,ty,()=>true,D,12);
  }
  p.goal=path&&path[0]||null;
 }
 function think(p,dt){
  const L=LV[cfg.diff];
+ // Super Bomberman-style spawn egress: leave the protected pocket before choosing loot.
+ if(!p.spawnEscaped){
+  const sx=tileOf(p.x),sy=tileOf(p.y),idx=players.indexOf(p);
+  if(sx!==p.spawnTx||sy!==p.spawnTy)p.spawnEscaped=true;
+  else{
+   const exits=idx===2?[[-1,0],[0,1],[0,-1],[1,0]]:[[-1,0],[0,-1],[0,1],[1,0]];
+   const exit=exits.find(([dx,dy])=>free(sx+dx,sy+dy,p));
+   const k=p.keys;for(const d in k)k[d].forEach(c=>keys[c]=false);
+   if(exit){const [dx,dy]=exit;keys[k[dy<0?'u':dy>0?'d':dx<0?'l':'r'][0]]=true;return;}
+  }
+ }
  p.tt-=dt;
+ const nowX=p.x,nowY=p.y,moved=Math.hypot(nowX-p.lastX,nowY-p.lastY);
+ if(moved<1.5)p.stuckT+=dt;else p.stuckT=0;
+ p.lastX=nowX;p.lastY=nowY;
+ // Re-plan instantly if danger appears or the bot has been motionless too long.
+ const g0=p.goal, dangerNow=dangerSet(p.aiStyle==='scout'?4.8:(p.active>0?3.2:.18));
+ if(g0&&dangerNow.has(g0[0]+','+g0[1]))p.tt=0;
+ if(p.stuckT>1.1){p.goal=null;p.tt=0;p.stuckT=0}
  if(p.tt<=0){p.tt=L.iv*(.7+Math.random()*.6);decide(p,L)}
- const k=p.keys;p.aiKeys={u:false,d:false,l:false,r:false};
- const tx=tileOf(p.x),ty=tileOf(p.y);if(dangerSet(Math.max(1.6,L.aw)).has(tx+','+ty)){p.goal=null;p.tt=0;decide(p,L)}const g=p.goal;const ox=(tx+.5)*T-p.x,oy=(ty+.5)*T-p.y;let d;
- if(g){if(g[0]!=tx)d=Math.abs(oy)>3?(oy>0?'d':'u'):(g[0]>tx?'r':'l');else if(g[1]!=ty)d=Math.abs(ox)>3?(ox>0?'r':'l'):(g[1]>ty?'d':'u');}
- if(!d){const order=['r','d','l','u'],start=(Math.floor(time*10)+players.indexOf(p))%4;for(let n=0;n<4;n++){const cand=order[(start+n)%4],v=DIRVEC[{r:'right',l:'left',u:'up',d:'down'}[cand]],nx=tx+v[0],ny=ty+v[1];if(grid[ny]&&grid[ny][nx]===0&&!dangerSet(L.aw).has(nx+','+ny)){d=cand;break}}}
- if(d){p.aiKeys[d]=true;p.botDir={r:'right',l:'left',u:'up',d:'down'}[d];}else p.tt=0;
+ const k=p.keys;for(const d in k)k[d].forEach(c=>keys[c]=false);
+ const g=p.goal;
+ if(!g){const safe=DIRS.filter(([dx,dy])=>free(tileOf(p.x)+dx,tileOf(p.y)+dy,p));if(safe.length){const [dx,dy]=safe[Math.floor(Math.random()*safe.length)];keys[k[dy<0?'u':dy>0?'d':dx<0?'l':'r'][0]]=true}return;}
+ const tx=tileOf(p.x),ty=tileOf(p.y),ox=(tx+.5)*T-p.x,oy=(ty+.5)*T-p.y;let d;
+ if(g[0]!=tx)d=Math.abs(oy)>3?(oy>0?'d':'u'):(g[0]>tx?'r':'l');
+ else if(g[1]!=ty)d=Math.abs(ox)>3?(ox>0?'r':'l'):(g[1]>ty?'d':'u');
+ if(d)keys[k[d][0]]=true;
 }
 
 /* ---------- online ---------- */
@@ -1019,7 +1033,6 @@ function update(dt){
  if(!over){matchElapsed+=dt;const timerSecond=Math.floor(matchElapsed);if(timerSecond!==lastTimerSecond){$('gameTimer').querySelector('strong').textContent=formatMatchTime(matchElapsed);lastTimerSecond=timerSecond}}
  if(over)overT+=dt;
  const on=cfg.mode=='online'&&room;
- if(cfg.mode!='online'){updateMacumba(dt);updateExtraSupers(dt);}
  if(on){
   const o=room.peers().find(q=>!q.isMe),pr=o&&o.presence||{},rp=players[1-myIdx];
   if(pr.rd===seed&&typeof pr.x=='number'&&typeof pr.y=='number'){
@@ -1032,18 +1045,26 @@ function update(dt){
  }
  players.forEach(p=>{
   if(!p.alive){p.deadT+=dt;return}
+  if(p.stunT>0)p.stunT=Math.max(0,p.stunT-dt);
+  if(p.portalCd>0)p.portalCd=Math.max(0,p.portalCd-dt);
+  if(p.bombBlockT>0)p.bombBlockT=Math.max(0,p.bombBlockT-dt);
+  if(p.invertT>0)p.invertT=Math.max(0,p.invertT-dt);
+  if(p.cangacoT>0){p.cangacoT=Math.max(0,p.cangacoT-dt);if(p.cangacoT===0&&p.cangacoBonus){p.maxB=Math.max(1,p.maxB-p.cangacoBonus);p.spd=Math.max(110,p.spd-45);p.cangacoBonus=0}}
   if(p.invulnT>0)p.invulnT=Math.max(0,p.invulnT-dt);
   if(p.remote){if(p.t){p.x+=(p.t.x-p.x)*.35;p.y+=(p.t.y-p.y)*.35}return}
-  if(p.abilityCd>0)p.abilityCd=Math.max(0,p.abilityCd-dt);if(p.superCd>0)p.superCd=Math.max(0,p.superCd-dt);if(p.reverseT>0)p.reverseT=Math.max(0,p.reverseT-dt);if(p.bombLockT>0)p.bombLockT=Math.max(0,p.bombLockT-dt);if(p.stunT>0)p.stunT=Math.max(0,p.stunT-dt);if(p.cangacoT>0)p.cangacoT=Math.max(0,p.cangacoT-dt);
+  if(p.abilityCd>0)p.abilityCd=Math.max(0,p.abilityCd-dt);if(p.superCd>0)p.superCd=Math.max(0,p.superCd-dt);
   if(p.bot)think(p,dt);
-  if(p.bot&&cfg.mode!='online'&&p.superEnergy>0&&p.superCd<=0){const t=nearestRival(p),ax=t?Math.abs(tileOf(p.x)-tileOf(t.x)):99,ay=t?Math.abs(tileOf(p.y)-tileOf(t.y)):99,dist=ax+ay;if(t&&t.alive&&dist>0&&dist<=(p.superEnergy>0?8:5)){if(ax>=ay)p.dir=tileOf(t.x)<tileOf(p.x)?'left':'right';else p.dir=tileOf(t.y)<tileOf(p.y)?'up':'down';if(useSuper(p))p.superCd=1.25}}
+  // Bots now actively use vehicles instead of getting stuck after pickup.
+  if(p.bot&&cfg.mode!='online'&&p.mount==='police'&&p.abilityCd<=0&&p.dashT<=0&&Math.random()<dt*1.8)useMountAbility(p);
+  if(p.bot&&cfg.mode!='online'&&p.mount==='moto'&&p.abilityCd<=0&&p.active<p.maxB&&safeBombPlan(p,p.aiStyle==='scout'?4.8:3.2)&&Math.random()<dt*(p.aiStyle==='scout'?.18:.9))placeBomb(p);
+  if(p.bot&&cfg.mode!='online'&&p.superEnergy>0&&p.superCd<=0){const t=players[0],ax=Math.abs(tileOf(p.x)-tileOf(t.x)),ay=Math.abs(tileOf(p.y)-tileOf(t.y)),dist=ax+ay;if(t.alive&&dist>0&&dist<=6&&(ax===0||ay===0||p.superType==='thief')){if(ax===0)p.dir=tileOf(t.y)<tileOf(p.y)?'up':'down';else if(ay===0)p.dir=tileOf(t.x)<tileOf(p.x)?'left':'right';if(useSuper(p))p.superCd=2.2}}
   const frozenOnEntry=p.frozenT>0;if(frozenOnEntry)p.frozenT=Math.max(0,p.frozenT-dt);
   const onIce=cfg.mode!='online'&&iceTiles.some(z=>z.owner!==p&&z.tx===tileOf(p.x)&&z.ty===tileOf(p.y));
   if(onIce&&!frozenOnEntry){p.iceT+=dt;if(p.iceT>=2){p.frozenT=2;p.iceT=0}}else if(!onIce)p.iceT=0;
   let dx=0,dy=0;const dashing=p.dashT>0;
-  if(p.frozenT>0||p.stunT>0){p.walk=0;p.dashT=0}
+  if(p.stunT>0){p.walk=0;p.dashT=0}
+  else if(p.frozenT>0){p.walk=0;p.dashT=0}
   else if(p.flyingT>0){flyStep(p,dt)}
-  else if(p.bot){const v=DIRVEC[p.botDir]||DIRVEC.down,botSpd=(110+cfg.diff*6+(p.cangacoT>0?45:0)+(p.mount=='horse'&&cfg.mode!='online'?30:0)+(p.mount=='skate'&&cfg.mode!='online'?100:0)),nx=tileOf(p.x+v[0]*8),ny=tileOf(p.y+v[1]*8);p.dir=p.botDir;if(!dangerSet(1.6).has(nx+','+ny)){p.walk+=dt*(botSpd/110)*8;step(p,v[0]*botSpd*dt,v[1]*botSpd*dt)}else{p.goal=null;p.tt=0}}
   else if(dashing){
    p.dashT=Math.max(0,p.dashT-dt);const v=DIRVEC[p.dashDir]||DIRVEC[p.dir]||DIRVEC.down;
    p.dir=p.dashDir;p.walk+=dt*12;dx=v[0];dy=v[1];
@@ -1054,10 +1075,10 @@ function update(dt){
     const bx=tileOf(p.x),by=tileOf(p.y);if(grid[by]&&grid[by][bx]==2)breakDestructible(bx,by,true);
    }
   }else{
-   const k=p.keys,rev=p.reverseT>0,swap={u:'d',d:'u',l:'r',r:'l'},h=d=>p.bot?!!p.aiKeys[rev?swap[d]:d]:k[rev?swap[d]:d].some(c=>keys[c]);
-   dx=h('r')-h('l');dy=h('d')-h('u');
+   const k=p.keys,h=d=>k[d].some(c=>keys[c]);
+   dx=h('r')-h('l');dy=h('d')-h('u');if(p.invertT>0){dx=-dx;dy=-dy}
    if(dx&&dy){if(p.pref=='x')dy=0;else dx=0}
-   const moveSpd=(p.spd+(p.cangacoT>0?45:0)+(p.mount=='horse'&&cfg.mode!='online'?30:0)+(p.mount=='skate'&&cfg.mode!='online'?100:0))*(onIce?.35:1)*(Math.max(.45,1-.12*(p.ninjaStacks||0)));
+   const moveSpd=(p.spd+(p.mount=='horse'&&cfg.mode!='online'?30:0)+(p.mount=='skate'&&cfg.mode!='online'?100:0))*(onIce?.35:1)*(Math.max(.45,1-.12*(p.ninjaStacks||0)));
    if(dx||dy){p.dir=dx>0?'right':dx<0?'left':dy>0?'down':'up';p.walk+=dt*(moveSpd/110)*8}else p.walk=0;
    step(p,dx*moveSpd*dt,dy*moveSpd*dt);
   }
@@ -1068,20 +1089,22 @@ function update(dt){
    if(it.type=='pim'&&p.pim<5){p.pim++;p.spd+=20}
    else if(it.type=='bomb'&&p.maxB<6)p.maxB++;
    else if(it.type=='fire'&&p.range<8)p.range++;
-   else if(it.type=='police'||it.type=='moto'||((it.type=='horse'||it.type=='skate')&&cfg.mode!='online')){p.mount=it.type;p.abilityCd=0;p.dashT=0}
-   else if(it.type=='teleport'&&cfg.mode!='online')teleportNearRival(p);
    else if(it.type=='supercharge'&&cfg.mode!='online'&&p.superEnergy<MAX_SUPER_CHARGES)p.superEnergy++;
+   else if(it.type=='teleport'&&cfg.mode!='online')teleportNearRival(p);
+
   }
+  if(cfg.map=='prison'&&p.portalCd<=0){const portal=PRISON_PORTALS.find(q=>q.x===tx&&q.y===ty);if(portal){const target=PRISON_PORTALS[portal.pair];if(target&&!bombs.some(b=>b.tx===target.x&&b.ty===target.y)){p.x=(target.x+.5)*T;p.y=(target.y+.5)*T;p.walk=0;p.portalCd=.9;}}}
  });
  if(cfg.mode!='online')updateShurikens(dt);
  bombs.forEach(b=>{b.t-=dt;b.thru=b.thru.filter(p=>p.alive&&overlap(p,b))});
  bombs.filter(b=>b.t<=0).forEach(detonate);
  flames.forEach(f=>f.t-=dt);
  flames=flames.filter(f=>f.t>0);
- iceTiles.forEach(z=>z.t-=dt);iceTiles=iceTiles.filter(z=>z.t>0);
+ iceTiles.forEach(z=>z.t-=dt);iceTiles=iceTiles.filter(z=>z.t>0);shockwaves.forEach(w=>w.t-=dt);shockwaves=shockwaves.filter(w=>w.t>0);
  players.forEach(p=>{
   const hit=flames.find(f=>f.tx==tileOf(p.x)&&f.ty==tileOf(p.y));
-  if(!p.remote&&p.alive&&p.invulnT<=0&&hit){
+  const ownBotFlame=hit&&hit.kind==='bomb'&&p.bot&&hit.owner===p;
+  if(!p.remote&&p.alive&&p.invulnT<=0&&hit&&!ownBotFlame){
    if(cfg.mode!='online'&&p.mount){p.mount=null;p.dashT=0;p.abilityCd=0;p.invulnT=1.1}
    else if(cfg.mode!='online'&&hit.kind==='heat'){if(!p.heatHitIds.includes(hit.attackId)){p.heatHitIds.push(hit.attackId);p.heatStacks=Math.min(3,p.heatStacks+1);if(p.heatStacks>=3){p.alive=false;p.deadT=0;p.mount=null;p.dashT=0}}}
    else{p.alive=false;p.deadT=0;p.mount=null;p.dashT=0}
@@ -1094,12 +1117,12 @@ function update(dt){
    if(winner){const i=players.indexOf(winner);scores[i]++;if(cfg.mode!='online'&&scores[i]>=cfg.target)matchOver=i}
   }
  }
- syncRoundActions();
+ if(over&&!victoryShown&&cfg.mode!='online')showVictory(winner||players[matchOver]);
  if(on&&over&&overT>3&&myIdx==0&&!autoNext){autoNext=true;const sd=Math.floor(Math.random()*1e9);startOnline(sd,cfg.map);room.emit('start',{seed:sd,map:cfg.map}).catch(()=>{})}
  players.forEach((p,i)=>{
   const lab=cfg.mode=='online'?(i==myIdx?'Você':'Rival'):nm(p);
-  const card=$('h'+i);if(!card)return;card.style.display=p.alive||i<2?'':'none';const scoreChanged=shownScores[i]>=0&&shownScores[i]!==scores[i],power=superInfo(p.superType);
-  const sig=[lab,scores[i],p.pim,p.maxB,p.range,p.superEnergy,p.heatStacks,p.ninjaStacks,p.reverseT>0?1:0,cfg.mode].join('|');
+  const card=$('h'+i),scoreChanged=shownScores[i]>=0&&shownScores[i]!==scores[i],power=superInfo(p.superType);
+  const sig=[lab,scores[i],p.pim,p.maxB,p.range,p.superEnergy,p.heatStacks,p.ninjaStacks,cfg.mode].join('|');
   if(sig!==card.dataset.hudSignature){
    card.innerHTML=`<div class="score-head"><div class="score-player"><span class="score-tag">J${i+1}</span><span class="score-name">${lab}</span></div><div class="score-wins" aria-label="${scores[i]} vitórias"><strong>${scores[i]}</strong><small>VITÓRIAS</small></div></div><div class="score-stats"><span class="score-stat" title="Pimentas"><span aria-hidden="true">🌶️</span><strong>${p.pim}</strong></span><span class="score-stat" title="Acarajés disponíveis"><span aria-hidden="true">🥟</span><strong>${p.maxB}</strong></span><span class="score-stat" title="Alcance das chamas"><span aria-hidden="true">🔥</span><strong>${p.range}</strong></span>${cfg.mode!='online'?`<span class="score-stat" title="${power.name} · cargas do super"><span aria-hidden="true">${power.icon}</span><strong>${p.superEnergy}/${MAX_SUPER_CHARGES}</strong></span>`:''}${cfg.mode!='online'&&p.heatStacks>0?`<span class="score-stat" title="Marcas acumuladas do Super Calor"><span aria-hidden="true">🌡️</span><strong>${p.heatStacks}/3</strong></span>`:''}${cfg.mode!='online'&&p.ninjaStacks>0?`<span class="score-stat" title="Acertos acumulados do Super Ninja"><span aria-hidden="true">🥷</span><strong>${p.ninjaStacks}/5</strong></span>`:''}</div>`;
    card.dataset.hudSignature=sig;
@@ -1124,6 +1147,19 @@ function sprite(si,dir,f){
  if(dir=='left')rows=rows.map((r,i)=>i==5||i==6?'.kesssssssk..':r);
  const draw=(r,y,off)=>{for(let x=0;x<12;x++){const ch=r[x];if(ch!='.'&&P[ch]){g.fillStyle=P[ch];g.fillRect(x+off,y,1,1)}}};
  rows.forEach((r,y)=>draw(r,y,0));
+ if(P.goku){
+  // Mesmo sprite-base das outras skins; apenas cabelo e acessórios mudam.
+  g.fillStyle='#111827';g.fillRect(1,1,10,3);g.fillRect(0,3,2,3);g.fillRect(10,3,2,3);
+  g.fillStyle='#facc15';g.fillRect(2,1,2,2);g.fillRect(7,1,3,2);g.fillRect(9,3,2,1);
+  g.fillStyle='#facc15';g.fillRect(2,9,8,1);g.fillRect(8,10,2,1);
+ }
+ if(P.beerus){
+  // Orelhas longas, olhos dourados e gola egípcia no mesmo grid 12x18.
+  g.fillStyle='#7c3aed';g.fillRect(1,0,2,5);g.fillRect(9,0,2,5);g.fillStyle='#facc15';g.fillRect(2,4,2,1);g.fillRect(8,4,2,1);
+  g.fillStyle='#facc15';g.fillRect(3,6,2,1);g.fillRect(7,6,2,1);g.fillStyle='#111827';g.fillRect(4,6,1,1);g.fillRect(7,6,1,1);
+  g.fillStyle='#facc15';g.fillRect(2,9,8,2);g.fillStyle='#0f172a';g.fillRect(4,11,4,1);g.fillStyle='#facc15';g.fillRect(3,12,6,1);
+ }
+
  // Acessórios em pixel art, preservando o sprite-base e as variações de direção.
  if(P.ninja){
   g.fillStyle=P.cap;g.fillRect(1,1,10,4);g.fillRect(0,3,2,5);g.fillRect(10,3,2,5);g.fillRect(2,8,8,1);
@@ -1228,8 +1264,9 @@ function drawPlayer(p){
  ctx.save();
  if(p.invulnT>0&&Math.floor(time*18)%2==0)ctx.globalAlpha=.42;
  ell(x,y+12,11,4,'rgba(0,0,0,.25)');
+ if(SKINS[p.skin].goku){ctx.save();ctx.globalAlpha=.35+.15*Math.sin(time*12);ctx.strokeStyle='#facc15';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x-17,y+18);ctx.lineTo(x-22,y-5);ctx.lineTo(x-14,y-22);ctx.moveTo(x+17,y+18);ctx.lineTo(x+22,y-5);ctx.lineTo(x+14,y-22);ctx.stroke();ctx.strokeStyle='#fef08a';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y-4,24+Math.sin(time*10)*3,0,Math.PI*2);ctx.stroke();ctx.restore()}
+ if(p.flyingT>0&&p.superType==='cloud'){ctx.fillStyle='rgba(255,255,255,.92)';ctx.shadowColor='#bae6fd';ctx.shadowBlur=12;[-11,0,11].forEach((ox,i)=>{ctx.beginPath();ctx.arc(x+ox,y+15-(i%2)*4,10,0,Math.PI*2);ctx.fill()});ctx.shadowBlur=0}
  if(p.flyingT>0){ctx.save();ctx.translate(x,y);ctx.fillStyle='#e0f2fe';ctx.strokeStyle='#38bdf8';ctx.lineWidth=2;[-1,1].forEach(side=>{ctx.beginPath();ctx.moveTo(side*5,-4);ctx.quadraticCurveTo(side*25,-24,side*18,2);ctx.quadraticCurveTo(side*12,12,side*5,5);ctx.closePath();ctx.fill();ctx.stroke()});ctx.restore()}
- if(p.cangacoT>0){ctx.save();ctx.fillStyle='#7c2d12';ctx.fillRect(x-18,y-35,36,4);ctx.fillStyle='#facc15';ctx.fillRect(x-8,y-48,16,13);ctx.restore()}
  if(p.frozenT>0){ctx.strokeStyle='rgba(103,232,249,.98)';ctx.lineWidth=4;ell(x,y,24,27,'rgba(103,232,249,.38)');ctx.beginPath();ctx.arc(x,y,24,0,Math.PI*2);ctx.stroke()}
  if(p.mount)drawMountVehicle(p.mount,x,y+3,p.mount=='skate'?1.05:1.18,p.mount=='skate'?'up':d);
  ctx.save();ctx.translate(x,y+17);
@@ -1239,18 +1276,12 @@ function drawPlayer(p){
  ctx.restore();ctx.restore();
  if(p.frozenT>0){ctx.save();ctx.font='bold 10px monospace';ctx.textAlign='center';ctx.lineWidth=3;ctx.strokeStyle='#0e7490';ctx.fillStyle='#ecfeff';ctx.strokeText('CONGELADO',x,y-35);ctx.fillText('CONGELADO',x,y-35);ctx.restore()}
 }
+function hideVictory(){const el=$('victoryOverlay');if(el){el.classList.remove('show');el.setAttribute('aria-hidden','true')}}
+function showVictory(p){if(!p)return;const el=$('victoryOverlay');if(!el)return;$('victoryTitle').textContent=(p.bot?'Bot '+players.indexOf(p):'Jogador')+' venceu!';$('victorySkin').textContent='Skin vencedora: '+SKINS[p.skin].n+' · '+superInfo(p.superType).name;el.classList.add('show');el.setAttribute('aria-hidden','false');victoryShown=true}
 function banner(a,b){
  ctx.fillStyle='rgba(0,0,0,.65)';ctx.fillRect(0,H*T/2-50,W*T,100);
  ctx.fillStyle='#ffd23f';ctx.textAlign='center';ctx.font='bold 24px Trebuchet MS,sans-serif';ctx.fillText(a,W*T/2,H*T/2-6);
  ctx.fillStyle='#fff';ctx.font='14px Trebuchet MS,sans-serif';ctx.fillText(b,W*T/2,H*T/2+24);ctx.textAlign='left';
-}
-function drawMacumbaDrum(d){
- const cx=(d.tx+.5)*T,cy=(d.ty+.5)*T,pulse=1+Math.sin(time*10)*.05;
- ctx.save();ctx.translate(cx,cy);ctx.scale(pulse,1);
- ctx.fillStyle='rgba(0,0,0,.28)';ctx.fillRect(-13,12,26,5);ctx.fillStyle='#7c2d12';ctx.fillRect(-12,-13,24,25);ctx.fillStyle='#b45309';ctx.fillRect(-10,-11,20,4);ctx.fillStyle='#fde68a';ctx.beginPath();ctx.ellipse(0,-10,11,5,0,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#451a03';ctx.lineWidth=2;ctx.stroke();ctx.fillStyle='#facc15';ctx.fillRect(-14,-2,3,10);ctx.fillRect(11,-2,3,10);ctx.restore();
-}
-function drawMacumbaGhost(g){
- const pulse=1+Math.sin(time*8+g.x*.03)*.08;ctx.save();ctx.translate(g.x,g.y);ctx.scale(pulse,pulse);ctx.globalAlpha=g.attached?.82:.72;ctx.fillStyle='#e0f2fe';ctx.strokeStyle='#7dd3fc';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,-18);ctx.quadraticCurveTo(16,-16,15,2);ctx.lineTo(15,15);ctx.lineTo(8,10);ctx.lineTo(2,17);ctx.lineTo(-5,10);ctx.lineTo(-13,16);ctx.lineTo(-14,1);ctx.quadraticCurveTo(-15,-16,0,-18);ctx.fill();ctx.stroke();ctx.fillStyle='#172554';ctx.fillRect(-7,-6,4,6);ctx.fillRect(3,-6,4,6);ctx.fillStyle='#ef4444';ctx.fillRect(-6,-5,2,2);ctx.fillRect(4,-5,2,2);ctx.restore();
 }
 function drawSoundTruck(){
  const x=6*T,y=4*T,w=3*T,h=4*T,pulse=1+Math.sin(time*8)*.07;
@@ -1291,12 +1322,17 @@ function draw(){
  if(!grid)return;
  for(let y=0;y<H;y++)for(let x=0;x<W;x++){
   const px=x*T,py=y*T;
-  const floor=cfg.map=='favela'?(((x+y)&1)?'#bfdbfe':'#dbeafe'):cfg.map=='feira'?(((x+y)&1)?'#fde68a':'#fef3c7'):(((x+y)&1)?'#f3e2b3':'#ecd7a0');ctx.fillStyle=floor;ctx.fillRect(px,py,T,T);
+  const prisonTunnel=cfg.map=='prison'&&[2,5,8,11].includes(y);
+  const floor=cfg.map=='favela'?(((x+y)&1)?'#bfdbfe':'#dbeafe'):cfg.map=='feira'?(((x+y)&1)?'#fde68a':'#fef3c7'):cfg.map=='prison'?(prisonTunnel?(((x+y)&1)?'#18243a':'#1e293b'):(((x+y)&1)?'#111827':'#172033')):(((x+y)&1)?'#f3e2b3':'#ecd7a0');ctx.fillStyle=floor;ctx.fillRect(px,py,T,T);
+  if(cfg.map=='prison'&&prisonTunnel){ctx.fillStyle='rgba(56,189,248,.38)';ctx.fillRect(px,py+2,T,2);ctx.fillStyle='rgba(15,23,42,.75)';ctx.fillRect(px,py+T-4,T,3);if(x%2===0){ctx.fillStyle='#facc15';ctx.fillRect(px+13,py+15,7,3);ctx.fillStyle='#fde68a';ctx.fillRect(px+15,py+15,3,1)}}
   const g=grid[y][x];
   if(g==1){
    const palette=cfg.map=='favela'?['#fb7185','#f97316','#facc15','#a78bfa','#22d3ee','#34d399']:cfg.map=='feira'?['#fb923c','#facc15','#34d399','#60a5fa','#f472b6','#c084fc']:casa;
    const hc=palette[(x*3+y*5)%palette.length];ctx.fillStyle=hc;ctx.fillRect(px,py,T,T);
-   if(cfg.map=='favela'){
+   if(cfg.map=='prison'){
+    // Parede fixa: aço/concreto azul-escuro, barras e parafusos. Nunca quebra.
+    ctx.fillStyle='#0b1220';ctx.fillRect(px,py,T,T);ctx.fillStyle='#273449';ctx.fillRect(px+2,py+3,T-4,T-7);ctx.fillStyle='#475569';ctx.fillRect(px+3,py+5,T-6,3);ctx.fillStyle='#111827';ctx.fillRect(px+5,py+13,T-10,15);ctx.fillStyle='#64748b';for(let q=7;q<30;q+=7)ctx.fillRect(px+q,py+13,2,15);ctx.fillStyle='#94a3b8';ctx.fillRect(px+3,py+10,T-6,2);ctx.fillStyle='#020617';ctx.fillRect(px+2,py+T-4,T-4,3);ctx.fillStyle='#facc15';[[5,6],[27,6],[5,27],[27,27]].forEach(([bx,by])=>{ctx.fillRect(px+bx,py+by,3,3);ctx.fillStyle='#422006';ctx.fillRect(px+bx+1,py+by+1,1,1);ctx.fillStyle='#facc15'});ctx.fillStyle='#cbd5e1';ctx.font='bold 4px monospace';ctx.textAlign='center';ctx.fillText('FIXO',px+18,py+33);ctx.textAlign='left';
+   }else if(cfg.map=='favela'){
     // Fachada de casa improvisada: telha ondulada, reboco colorido, porta, janela gradeada e varal.
     ctx.fillStyle='rgba(15,23,42,.28)';ctx.fillRect(px+1,py+31,T-1,4);
     ctx.fillStyle=['#334155','#475569','#713f12','#1f2937'][(x+y)%4];ctx.fillRect(px,py,T,8);
@@ -1314,9 +1350,9 @@ function draw(){
     ctx.fillStyle='#5a3a22';ctx.fillRect(px+14,py+25,8,11);
    }
   }else if(g==2){
-   ctx.fillStyle='#b9772e';ctx.fillRect(px+3,py+14,T-6,T-17);
-   const wood=cfg.map=='favela'?'#9a3412':cfg.map=='feira'?'#b45309':'#8c5520';ctx.fillStyle=wood;for(let i=0;i<4;i++)ctx.fillRect(px+3,py+18+i*5,T-6,1.5);
-   ell(px+T/2,py+14,T/2-3,7,'#fff');ell(px+12,py+13,3,2,'#c46a1b');ell(px+22,py+13,3,2,'#c46a1b');
+   const wood=cfg.map=='prison'?'#a85b16':cfg.map=='favela'?'#9a3412':cfg.map=='feira'?'#b45309':'#8c5520';
+   if(cfg.map=='prison'){ctx.fillStyle='#713f12';ctx.fillRect(px+2,py+8,T-4,T-10);ctx.fillStyle=wood;ctx.fillRect(px+4,py+10,T-8,T-14);ctx.fillStyle='#d97706';for(let i=0;i<4;i++)ctx.fillRect(px+5,py+13+i*5,T-10,2);ctx.fillStyle='#facc15';ctx.fillRect(px+3,py+7,T-6,3);ctx.fillStyle='#422006';ctx.fillRect(px+7,py+11,2,20);ctx.fillRect(px+25,py+11,2,20);ctx.fillStyle='#fef3c7';ctx.font='bold 5px monospace';ctx.textAlign='center';ctx.fillText('QUEBRA',px+18,py+34);ctx.textAlign='left';ctx.fillStyle='#7c2d12';ctx.beginPath();ctx.moveTo(px+15,py+14);ctx.lineTo(px+18,py+19);ctx.lineTo(px+16,py+24);ctx.stroke();}
+   else {ctx.fillStyle='#b9772e';ctx.fillRect(px+3,py+14,T-6,T-17);ctx.fillStyle=wood;for(let i=0;i<4;i++)ctx.fillRect(px+3,py+18+i*5,T-6,1.5);ell(px+T/2,py+14,T/2-3,7,'#fff');ell(px+12,py+13,3,2,'#c46a1b');ell(px+22,py+13,3,2,'#c46a1b');}
   }else if(g==3&&cfg.map=='favela'){
    // Reserva de obstáculos do paredão removida em favor do carro móvel-estático.
   }else if(g==3&&cfg.map=='feira'){
@@ -1324,12 +1360,8 @@ function draw(){
    for(let q=0;q<4;q++){ctx.fillStyle=colors[q];ctx.fillRect(px+3+q*7,py+5,7,11)}ctx.fillStyle='#7c2d12';ctx.fillRect(px+2,py+15,T-4,3);
   }
  }
+ if(cfg.map=='prison')PRISON_PORTALS.forEach((q,i)=>{const cx=(q.x+.5)*T,cy=(q.y+.5)*T;ctx.save();ctx.globalAlpha=.88;ctx.fillStyle='rgba(2,6,23,.95)';ctx.beginPath();ctx.ellipse(cx,cy,14,10,0,0,Math.PI*2);ctx.fill();ctx.strokeStyle=q.color;ctx.lineWidth=3;ctx.shadowColor=q.color;ctx.shadowBlur=12;ctx.beginPath();ctx.ellipse(cx,cy,13,9,0,0,Math.PI*2);ctx.stroke();ctx.shadowBlur=0;ctx.fillStyle='#e0f2fe';ctx.fillRect(cx-2,cy-2,4,2);ctx.fillStyle=q.color;ctx.fillRect(cx-7,cy+5,14,2);ctx.font='bold 7px monospace';ctx.textAlign='center';ctx.fillText(String(i+1),cx,cy-12);ctx.restore()});
  if(cfg.map=='favela')drawSoundTruck();
-  macumbaDrums.forEach(drawMacumbaDrum);macumbaGhosts.forEach(drawMacumbaGhost);
- waves.forEach(w=>{ctx.save();ctx.translate(w.x,w.y);ctx.globalAlpha=.75;ctx.strokeStyle='#38bdf8';ctx.lineWidth=5;ctx.beginPath();ctx.arc(0,0,17+Math.sin(time*12)*3,-1.2,1.2);ctx.stroke();ctx.restore()});
- giantAcarajes.forEach(g=>{ctx.save();ctx.translate(g.x,g.y);ctx.rotate(time*5);drawAcaraje(0,0,1.25);ctx.restore()});
- capoeiraFx.forEach(f=>{ctx.save();ctx.translate(f.x,f.y);ctx.globalAlpha=Math.min(1,f.t*2);ctx.strokeStyle='#facc15';ctx.lineWidth=4;ctx.beginPath();ctx.arc(0,0,28+(1-f.t)*25,0,Math.PI*2);ctx.stroke();ctx.restore()});
- saciDecoys.forEach(d=>{const x=(d.tx+.5)*T,y=(d.ty+.5)*T;ctx.save();ctx.translate(x,y);ctx.globalAlpha=Math.min(1,d.t);ctx.fillStyle='#111827';ctx.beginPath();ctx.arc(0,0,12,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#a78bfa';ctx.lineWidth=3;ctx.beginPath();ctx.arc(0,0,17+Math.sin(time*9)*3,0,Math.PI*2);ctx.stroke();ctx.fillStyle='#facc15';ctx.fillRect(-3,-18,6,5);ctx.restore()});
  iceTiles.forEach(z=>{ctx.save();ctx.globalAlpha=Math.min(.62,z.t/2);ctx.fillStyle='#67e8f9';ctx.strokeStyle='#ecfeff';ctx.lineWidth=2;ctx.beginPath();ctx.roundRect(z.tx*T+3,z.ty*T+3,T-6,T-6,8);ctx.fill();ctx.stroke();ctx.fillStyle='rgba(255,255,255,.7)';ctx.fillRect(z.tx*T+8,z.ty*T+8,7,2);ctx.fillRect(z.tx*T+18,z.ty*T+19,9,2);ctx.restore()});
  items.forEach(drawItem);
  bombs.forEach(b=>{
@@ -1345,6 +1377,7 @@ function draw(){
   ctx.globalAlpha=1;
  });
  shurikens.forEach(drawShuriken);
+ shockwaves.forEach(w=>{ctx.save();ctx.globalAlpha=Math.min(1,w.t/.62);w.cells.forEach(c=>{const cx=(c.x+.5)*T,cy=(c.y+.5)*T;ctx.fillStyle='#22d3ee';ctx.shadowColor='#67e8f9';ctx.shadowBlur=14;ctx.beginPath();ctx.arc(cx,cy,13+Math.sin(time*18+c.x)*3,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fef08a';ctx.beginPath();ctx.arc(cx,cy,5,0,Math.PI*2);ctx.fill()});ctx.restore()});
  [...players].sort((a,b)=>a.y-b.y).forEach(drawPlayer);
  if(scr=='play'){
   if(paused)banner('⏸ PAUSADO','P continua · M volta ao menu');
@@ -1362,33 +1395,36 @@ function refresh(){
  document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('on',b.dataset.tab==activeTab));
  document.querySelectorAll('[data-panel]').forEach(p=>p.classList.toggle('active',p.dataset.panel==activeTab));
  document.querySelectorAll('[data-m]').forEach(b=>b.classList.toggle('on',b.dataset.m==cfg.mode));
+ document.querySelectorAll('[data-platform]').forEach(b=>b.classList.toggle('on',b.dataset.platform===(cfg.platform==='auto'?(matchMedia('(pointer:coarse)').matches?'mobile':'pc'):cfg.platform)));
  document.querySelectorAll('[data-d]').forEach(b=>b.classList.toggle('on',+b.dataset.d==cfg.diff));
  document.querySelectorAll('[data-t]').forEach(b=>b.classList.toggle('on',+b.dataset.t==cfg.target));
  document.querySelectorAll('[data-map]').forEach(b=>b.classList.toggle('on',b.dataset.map==cfg.map));
  document.querySelectorAll('[data-music]').forEach(b=>{b.classList.toggle('on',musicEnabled);b.textContent=musicEnabled?'Música: ligada':'Música: desligada'});
- const m=cfg.mode;
- $('rd').style.display=m=='bot'?'flex':'none';$('botSettings').style.display=m=='bot'?'flex':'none';$('ffaNotice').style.display=m=='bot'?'block':'none';$('botCount').value=String(cfg.botCount);$('botDifficulty').value=String(cfg.diff);$('botSkinConfig').style.display=m=='bot'?'block':'none';for(let i=1;i<5;i++){const bs=$('botSkin'+i);if(bs){bs.value=String(cfg.skin[i]||0);bs.parentElement.style.display=m=='bot'&&i<=cfg.botCount?'flex':'none'}}
- $('ro').style.display=m=='online'?'flex':'none';
- $('rt').style.display=m=='online'?'none':'flex';
- $('sk1').style.display=m=='online'?'none':'flex';
- $('superConfig').style.display=m=='online'?'none':'flex';for(let i=0;i<5;i++){const el=$('super'+i);if(el)el.value=cfg.supers[i]||'heat'}
- $('super0Label').textContent=m=='bot'?'Seu super':'Super do jogador 1';$('super1Label').textContent=m=='bot'?'Super do Bot 1':'Super do jogador 2';for(let i=2;i<5;i++){const el=$('super'+i),pick=$('superPick'+i),lab=$('super'+i+'Label');if(el&&pick){pick.style.display=m=='bot'&&i<=cfg.botCount?'flex':'none';lab.textContent='Super do Bot '+i}}
- $('sl0').textContent=m=='local'?'Jogador 1':m=='bot'?'Você':'Seu visual';
- $('sl1').textContent=m=='bot'?'Bot':'Jogador 2';
- $('sn0').textContent=SKINS[cfg.skin[0]].n;$('sn1').textContent=SKINS[cfg.skin[1]].n;
- pv(0);pv(1);
- $('ctl').textContent=m=='local'?'P1: WASD + Espaço + E · P2: setas + Enter + Num1 · P pausa':m=='bot'?'WASD ou setas + Espaço/Enter · E ativa seu super; '+cfg.botCount+' bot(s) usam super próprio · P pausa':'WASD ou setas + Espaço/Enter. Os dois digitam o mesmo código de sala, logados e com permissão de colaborador no link.';
+ const m=cfg.mode,botMode=m=='bot'||m=='bot2'||m=='bot4';
+ $('rd').style.display=botMode?'flex':'none';$('h2').style.display=(m=='bot2'||m=='bot4')?'block':'none';$('h3').style.display=m=='bot4'?'block':'none';$('h4').style.display=m=='bot4'?'block':'none';
+ $('ro').style.display=m=='online'?'flex':'none';$('rt').style.display=m=='online'?'none':'flex';
+ $('sk1').style.display=m=='online'?'none':'flex';$('sk2').style.display=(m=='bot2'||m=='bot4')?'flex':'none';$('sk3').style.display=m=='bot4'?'flex':'none';$('sk4').style.display=m=='bot4'?'flex':'none';
+ $('superConfig').style.display=m=='online'?'none':'flex';$('super0').value=cfg.supers[0];$('super1').value=cfg.supers[1];$('super2').value=cfg.supers[2];$('super3').value=cfg.supers[3];$('super4').value=cfg.supers[4];$('superPick2').style.display=(m=='bot2'||m=='bot4')?'block':'none';$('superPick3').style.display=m=='bot4'?'block':'none';$('superPick4').style.display=m=='bot4'?'block':'none';
+ $('super0Label').textContent=botMode?'Seu super':'Super do jogador 1';$('super1Label').textContent=m=='bot2'||m=='bot4'?'Bot 1':m=='bot'?'Super do Bot':'Super do jogador 2';$('super2Label').textContent='Bot 2 · J3';$('super3Label').textContent='Bot 3 · J4';$('super4Label').textContent='Bot 4 · J5';
+ $('sl0').textContent=m=='local'?'Jogador 1':botMode?'Você':'Seu visual';$('sl1').textContent=botMode?'Bot 1':'Jogador 2';$('sl2').textContent='Bot 2';$('sl3').textContent='Bot 3';$('sl4').textContent='Bot 4';
+ $('sn0').textContent=SKINS[cfg.skin[0]].n;$('sn1').textContent=SKINS[cfg.skin[1]].n;$('sn2').textContent=SKINS[cfg.skin[2]].n;$('sn3').textContent=SKINS[cfg.skin[3]].n;$('sn4').textContent=SKINS[cfg.skin[4]].n;
+ document.querySelectorAll('[data-super-player]').forEach(box=>box.querySelectorAll('[data-super]').forEach(b=>b.classList.toggle('on',b.dataset.super===cfg.supers[Number(box.dataset.superPlayer)])));
+ pv(0);pv(1);pv(2);pv(3);pv(4);
+ $('ctl').textContent=m=='local'?'P1: WASD + Espaço + E · P2: setas + Enter + Num1 · P pausa':botMode?'WASD ou setas + Espaço/Enter · E ativa seu super; os bots usam os deles sozinhos · P pausa':'WASD ou setas + Enter. Os dois digitam o mesmo código de sala, logados e com permissão de colaborador no link.';
  $('ctl').textContent+=' · No celular, os controles touch aparecem durante a partida.';
  $('play').textContent=m=='online'?'🌐 Entrar na sala':'▶ Jogar';
  syncMobileControls();
 }
 document.addEventListener('change',e=>{
- const sel=e.target.closest('[data-super-choice]');if(sel){cfg.supers[Number(sel.dataset.superChoice)]=sel.value;refresh();return}if(e.target.id=='botCount'){cfg.botCount=Math.max(1,Math.min(4,+e.target.value||1));refresh()}else if(e.target.id=='botDifficulty'){cfg.diff=Math.max(0,Math.min(2,+e.target.value||0));refresh()}else if(/^botSkin[1-4]$/.test(e.target.id)){cfg.skin[+e.target.id.slice(7)]=+e.target.value;refresh()}
+ const sel=e.target.closest('[data-super-choice]');if(!sel)return;
+ cfg.supers[Number(sel.dataset.superChoice)]=sel.value;refresh();
 });
 document.addEventListener('click',e=>{
  const b=e.target.closest('button');if(!b||b.hasAttribute('data-touch-key'))return;
  const d=b.dataset;
- if(d.m)cfg.mode=d.m;
+ if(d.super){const i=Number(b.closest('[data-super-player]')?.dataset.superPlayer||0);cfg.supers[i]=d.super;}
+ else if(d.m)cfg.mode=d.m;
+ else if(d.platform){cfg.platform=d.platform;syncMobileControls();}
  else if(d.d)cfg.diff=+d.d;
  else if(d.t)cfg.target=+d.t;
  else if(d.map)cfg.map=d.map;
@@ -1396,15 +1432,15 @@ document.addEventListener('click',e=>{
  else if(d.s){const [i,s]=d.s.split(',').map(Number);cfg.skin[i]=(cfg.skin[i]+s+SKINS.length)%SKINS.length}
  else if(d.tab){activeTab=d.tab;if(d.tab=='music'){bgm.pause();const y=$('ytPlayer');if(y&&y.src=='about:blank')y.src=y.dataset.src}}
  else if(b.id=='stopYouTube'||b.id=='stopAudio'){stopYouTube()}
+ else if(b.id=='victoryReplay'){hideVictory();scores=[0,0,0,0,0];resetMatchClock();startGame()}
+ else if(b.id=='victoryMenu'){hideVictory();toMenu()}
  else if(b.id=='play'){if(cfg.mode=='online')goOnline();else{scores=[0,0,0,0,0];resetMatchClock();startGame()}}
  else if(b.id=='bp')togglePause();
  else if(b.id=='bm'&&scr=='play')toMenu();
- else if(b.id=='nextRound')nextRound();
- else if(b.id=='roundMenu')toMenu();
  refresh();
 });
 let last=performance.now();
-function loop(n){const dt=Math.min(.05,(n-last)/1000);last=n;if(document.visibilityState!=='hidden'){update(dt);if(scr=='menu'){pv(0);pv(1);drawMenuHero(0);drawMenuHero(1)}draw()}else if(scr=='play'&&!paused){last=n}requestAnimationFrame(loop)}
+function loop(n){const dt=Math.min(.05,(n-last)/1000);last=n;if(document.visibilityState!=='hidden'){update(dt);if(scr=='menu'){pv(0);pv(1);pv(2);pv(3);pv(4);drawMenuHero(0);drawMenuHero(1)}draw()}else if(scr=='play'&&!paused){last=n}requestAnimationFrame(loop)}
 players.forEach((p,i)=>p.skin=cfg.skin[i]);
 reset();refresh();requestAnimationFrame(loop);
 

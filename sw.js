@@ -1,4 +1,4 @@
-const CACHE = 'acaraje-bomber-v29';
+const CACHE = 'acaraje-bomber-v41';
 const APP_SHELL = ['./', './index.html', './manifest.webmanifest', './bomberman-bahia-icon.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(APP_SHELL)).then(() => self.skipWaiting()));
