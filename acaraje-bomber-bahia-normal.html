@@ -735,6 +735,11 @@ function startPoliceDash(p){
  p.dashDir=p.dir;p.dashT=.62;p.abilityCd=2.6;
 }
 function useMountAbility(p){if(cfg.mode!='online'&&p.mount=='police')startPoliceDash(p)}
+
+function botCanEscapeAfterBomb(p,tx,ty,range){
+ const danger=dangerSet(2.25);blast(tx,ty,range).forEach(c=>danger.add(c));
+ return !!bfs(p,tx,ty,(x,y)=>!danger.has(x+','+y),new Set(),12);
+}
 function placeBomb(p){
  if(!p.alive||over||p.frozenT>0||p.bombLockT>0)return;
  if(p.mount=='police'&&cfg.mode=='online'){startPoliceDash(p);return}
@@ -754,6 +759,7 @@ function placeBomb(p){
  }
  if(p.active>=p.maxB+(p.cangacoT>0?2:0))return;
  const tx=tileOf(p.x),ty=tileOf(p.y);
+ if(p.bot&&!botCanEscapeAfterBomb(p,tx,ty,p.range))return;
  if(launchBomb(p,tx,ty))returnAfterTeleportBomb(p);
 }
 function castHeat(p){
@@ -959,7 +965,7 @@ function think(p,dt){
  p.tt-=dt;
  if(p.tt<=0){p.tt=L.iv*(.7+Math.random()*.6);decide(p,L)}
  const k=p.keys;p.aiKeys={u:false,d:false,l:false,r:false};
- const tx=tileOf(p.x),ty=tileOf(p.y);if(dangerSet(Math.max(1.1,L.aw)).has(tx+','+ty)){p.goal=null;p.tt=0;decide(p,L)}const g=p.goal;const ox=(tx+.5)*T-p.x,oy=(ty+.5)*T-p.y;let d;
+ const tx=tileOf(p.x),ty=tileOf(p.y);if(dangerSet(Math.max(1.6,L.aw)).has(tx+','+ty)){p.goal=null;p.tt=0;decide(p,L)}const g=p.goal;const ox=(tx+.5)*T-p.x,oy=(ty+.5)*T-p.y;let d;
  if(g){if(g[0]!=tx)d=Math.abs(oy)>3?(oy>0?'d':'u'):(g[0]>tx?'r':'l');else if(g[1]!=ty)d=Math.abs(ox)>3?(ox>0?'r':'l'):(g[1]>ty?'d':'u');}
  if(!d){const order=['r','d','l','u'],start=(Math.floor(time*10)+players.indexOf(p))%4;for(let n=0;n<4;n++){const cand=order[(start+n)%4],v=DIRVEC[{r:'right',l:'left',u:'up',d:'down'}[cand]],nx=tx+v[0],ny=ty+v[1];if(grid[ny]&&grid[ny][nx]===0&&!dangerSet(L.aw).has(nx+','+ny)){d=cand;break}}}
  if(d){p.aiKeys[d]=true;p.botDir={r:'right',l:'left',u:'up',d:'down'}[d];}else p.tt=0;
@@ -1037,7 +1043,7 @@ function update(dt){
   let dx=0,dy=0;const dashing=p.dashT>0;
   if(p.frozenT>0||p.stunT>0){p.walk=0;p.dashT=0}
   else if(p.flyingT>0){flyStep(p,dt)}
-  else if(p.bot){const v=DIRVEC[p.botDir]||DIRVEC.down,botSpd=(110+cfg.diff*6+(p.cangacoT>0?45:0)+(p.mount=='horse'&&cfg.mode!='online'?30:0)+(p.mount=='skate'&&cfg.mode!='online'?100:0)),nx=tileOf(p.x+v[0]*8),ny=tileOf(p.y+v[1]*8);p.dir=p.botDir;if(!dangerSet(.85).has(nx+','+ny)){p.walk+=dt*(botSpd/110)*8;step(p,v[0]*botSpd*dt,v[1]*botSpd*dt)}else{p.goal=null;p.tt=0}}
+  else if(p.bot){const v=DIRVEC[p.botDir]||DIRVEC.down,botSpd=(110+cfg.diff*6+(p.cangacoT>0?45:0)+(p.mount=='horse'&&cfg.mode!='online'?30:0)+(p.mount=='skate'&&cfg.mode!='online'?100:0)),nx=tileOf(p.x+v[0]*8),ny=tileOf(p.y+v[1]*8);p.dir=p.botDir;if(!dangerSet(1.6).has(nx+','+ny)){p.walk+=dt*(botSpd/110)*8;step(p,v[0]*botSpd*dt,v[1]*botSpd*dt)}else{p.goal=null;p.tt=0}}
   else if(dashing){
    p.dashT=Math.max(0,p.dashT-dt);const v=DIRVEC[p.dashDir]||DIRVEC[p.dir]||DIRVEC.down;
    p.dir=p.dashDir;p.walk+=dt*12;dx=v[0];dy=v[1];
