@@ -1,0 +1,17 @@
+{
+  "name": "Acarajé Bomber – Salvador",
+  "short_name": "Acarajé Bomber",
+  "description": "Jogo bomber multiplayer inspirado no Pelourinho.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#172554",
+  "theme_color": "#172554",
+  "icons": [
+    {"src":"./bomberman-bahia-icon.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"./bomberman-bahia-icon.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+  ]
+}
